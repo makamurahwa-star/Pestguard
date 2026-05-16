@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-// In production, point at the deployed Render backend.
-// In development, leave it empty so Vite's dev proxy handles /api → localhost:5000.
 const API_BASE = (import.meta.env.VITE_API_URL || '') + '/api'
 const UPLOAD_BASE = (import.meta.env.VITE_API_URL || '')
 
@@ -32,8 +30,19 @@ api.interceptors.response.use(
 
 export function uploadUrl(rel) {
   if (!rel) return null
-  if (rel.startsWith('http')) return rel
+  if (rel.startsWith('http') || rel.startsWith('data:')) return rel
   return `${UPLOAD_BASE}/uploads/${rel}`
+}
+
+/**
+ * Pick the right image source for a scan or report.
+ * Items have either `image_path` (filesystem URL) or `image_data` (data URI).
+ */
+export function pickImageSrc(item) {
+  if (!item) return null
+  if (item.image_data) return item.image_data
+  if (item.image_path) return uploadUrl(item.image_path)
+  return null
 }
 
 export const authApi = {

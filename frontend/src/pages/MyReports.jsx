@@ -4,7 +4,7 @@ import {
   FileText, Plus, MapPin, Calendar, Bug, Trash2, CheckCircle2,
   Search, ChevronDown,
 } from 'lucide-react'
-import { reportsApi, uploadUrl } from '../lib/api'
+import { reportsApi, pickImageSrc } from '../lib/api'
 import { usePestData } from '../context/PestDataContext.jsx'
 import ConfirmModal from '../components/ConfirmModal.jsx'
 import toast from 'react-hot-toast'
@@ -72,39 +72,16 @@ export default function MyReports() {
 
   return (
     <div className="space-y-6 animate-fade-up">
-      {/* ── Hero header with background image ── */}
-      <div className="relative overflow-hidden rounded-3xl">
-        {/* Background image — farmer in field */}
-        <img
-          src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1400&q=80"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-center"
-        />
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-leaf-950/85 via-leaf-900/70 to-earth-800/60" />
-
-        {/* Header content */}
-        <div className="relative z-10 p-8 lg:p-12 flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className="text-xs font-semibold text-leaf-300 uppercase tracking-[0.2em]">My contributions</p>
-            <h1 className="font-display text-4xl lg:text-5xl font-bold text-white mt-1">My reports</h1>
-
-            {/* Welcome message card */}
-            <div className="mt-4">
-              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-3 shadow-lg inline-block">
-                <p className="text-leaf-100 leading-relaxed text-sm">
-                  Every outbreak you've logged — track, manage and resolve your field reports.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <Link to="/reports/new" className="btn-primary shrink-0">
-            <Plus size={16} /> New report
-          </Link>
+      <header className="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p className="text-xs font-semibold text-leaf-600 uppercase tracking-[0.2em]">My contributions</p>
+          <h1 className="font-display text-4xl lg:text-5xl font-bold text-leaf-950 mt-1">My reports</h1>
+          <p className="text-leaf-700 mt-2">Every outbreak you've logged.</p>
         </div>
-      </div>
+        <Link to="/reports/new" className="btn-primary">
+          <Plus size={16} /> New report
+        </Link>
+      </header>
 
       <section className="card p-4 flex flex-wrap items-center gap-3">
         <div className="relative flex-1 min-w-[200px]">
@@ -213,7 +190,7 @@ function DetailModal({ report, info, onClose, onDelete, onResolve }) {
 
         <div className="p-6 space-y-5">
           {report.image_path && (
-            <img src={uploadUrl(report.image_path)} alt="Outbreak" className="w-full rounded-2xl max-h-72 object-cover" />
+            <img src={pickImageSrc(report)} alt="Outbreak" className="w-full rounded-2xl max-h-72 object-cover" />
           )}
 
           <div className="grid grid-cols-2 gap-4 text-sm">

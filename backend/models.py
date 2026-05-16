@@ -53,7 +53,11 @@ class Scan(db.Model):
     __tablename__ = 'scans'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    image_path = db.Column(db.String(255), nullable=False)
+    # image_path: legacy filesystem path (used in local dev when a disk exists)
+    # image_data: data URI of the image (used in production when no disk is available)
+    # Exactly one of the two will be set for each scan.
+    image_path = db.Column(db.String(255))
+    image_data = db.Column(db.Text)
     predicted_class = db.Column(db.String(100), nullable=False)
     confidence = db.Column(db.Float, nullable=False)
     all_predictions = db.Column(db.Text)  # JSON
@@ -69,6 +73,7 @@ class Scan(db.Model):
             'id': self.id,
             'user_id': self.user_id,
             'image_path': self.image_path,
+            'image_data': self.image_data,
             'predicted_class': self.predicted_class,
             'confidence': self.confidence,
             'all_predictions': json.loads(self.all_predictions) if self.all_predictions else {},
@@ -95,6 +100,7 @@ class Report(db.Model):
     region = db.Column(db.String(100))
     description = db.Column(db.Text)
     image_path = db.Column(db.String(255))
+    image_data = db.Column(db.Text)
     status = db.Column(db.String(20), default='active')  # active | resolved
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
@@ -113,6 +119,7 @@ class Report(db.Model):
             'region': self.region,
             'description': self.description,
             'image_path': self.image_path,
+            'image_data': self.image_data,
             'status': self.status,
             'created_at': self.created_at.isoformat() if self.created_at else None,
             'updated_at': self.updated_at.isoformat() if self.updated_at else None,
@@ -124,12 +131,12 @@ class Report(db.Model):
 
 
 class EmergencyContact(db.Model):
-    """User-added emergency contacts (extension officer, neighbour farmer, agro-vet, etc)."""
+    """User-added emergency contacts."""
     __tablename__ = 'emergency_contacts'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     name = db.Column(db.String(120), nullable=False)
-    role = db.Column(db.String(80))  # e.g. "Extension Officer", "Neighbour"
+    role = db.Column(db.String(80))
     phone = db.Column(db.String(30), nullable=False)
     notes = db.Column(db.Text)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)

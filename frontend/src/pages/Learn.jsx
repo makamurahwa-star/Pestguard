@@ -4,7 +4,7 @@ import {
   BookOpen, Bug, Search, MapPin, Calendar, AlertTriangle,
   Wheat, Shield, Sprout, Pill, AlertCircle, ChevronRight, X,
 } from 'lucide-react'
-import { reportsApi, uploadUrl } from '../lib/api'
+import { reportsApi, pickImageSrc } from '../lib/api'
 import { usePestData } from '../context/PestDataContext.jsx'
 import toast from 'react-hot-toast'
 
@@ -20,34 +20,14 @@ export default function Learn() {
 
   return (
     <div className="space-y-6 animate-fade-up">
-      {/* ── Hero header with background image ── */}
-      <div className="relative overflow-hidden rounded-3xl">
-        {/* Background image — lush crop field */}
-        <img
-          src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1400&q=80"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-center"
-        />
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-leaf-950/85 via-leaf-900/75 to-leaf-700/50" />
-
-        {/* Welcome card content */}
-        <div className="relative z-10 p-8 lg:p-12">
-          <p className="text-xs font-semibold text-leaf-300 uppercase tracking-[0.2em]">Knowledge</p>
-          <h1 className="font-display text-4xl lg:text-5xl font-bold text-white mt-1">Learn</h1>
-
-          {/* Welcome message card */}
-          <div className="mt-5 inline-block max-w-2xl">
-            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-6 py-4 shadow-lg">
-              <p className="text-leaf-100 leading-relaxed">
-                Browse the full pest library and see what other farmers are reporting
-                near you so you stay prepared.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <header>
+        <p className="text-xs font-semibold text-leaf-600 uppercase tracking-[0.2em]">Knowledge</p>
+        <h1 className="font-display text-4xl lg:text-5xl font-bold text-leaf-950 mt-1">Learn</h1>
+        <p className="text-leaf-700 mt-2 max-w-2xl">
+          Browse the full pest library and see what other farmers are reporting
+          near you so you stay prepared.
+        </p>
+      </header>
 
       {/* Tabs */}
       <div className="inline-flex gap-1 p-1 bg-canvas-subtle rounded-2xl border border-leaf-100">
@@ -157,12 +137,14 @@ function PestImage({ pest, className = 'aspect-[16/10]' }) {
     const cacheKey = `pest_img:${sci}`
     const NEG_CACHE_MS = 7 * 24 * 60 * 60 * 1000  // 7 days
 
+    // Check cache: a JSON entry {url, ts} or 'legacy plain URL string'
     try {
       const raw = localStorage.getItem(cacheKey)
       if (raw) {
         let parsed
         try { parsed = JSON.parse(raw) } catch { parsed = { url: raw, ts: Date.now() } }
         if (parsed.url === '__none__') {
+          // Expired negative cache? retry.
           if (Date.now() - parsed.ts < NEG_CACHE_MS) { setFailed(true); return }
         } else if (parsed.url) {
           setSrc(parsed.url); return
@@ -170,6 +152,7 @@ function PestImage({ pest, className = 'aspect-[16/10]' }) {
       }
     } catch {}
 
+    // Wikipedia REST API summary endpoint — returns thumbnail when available
     const title = encodeURIComponent(sci.split(' ').slice(0, 2).join(' '))
     fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${title}`)
       .then(r => r.ok ? r.json() : null)
@@ -177,6 +160,7 @@ function PestImage({ pest, className = 'aspect-[16/10]' }) {
         if (cancelled) return
         const thumb = data?.thumbnail?.source || data?.originalimage?.source
         if (thumb) {
+          // Upgrade Wikipedia thumb to a slightly larger size for sharper display
           const upgraded = thumb.replace(/\/\d+px-/, '/320px-')
           setSrc(upgraded)
           try { localStorage.setItem(cacheKey, JSON.stringify({ url: upgraded, ts: Date.now() })) } catch {}
@@ -195,6 +179,7 @@ function PestImage({ pest, className = 'aspect-[16/10]' }) {
     return () => { cancelled = true }
   }, [pest.scientific_name])
 
+  // Deterministic accent gradient per pest so fallbacks aren't monotone
   const accent = (() => {
     const colors = [
       'from-leaf-200 to-leaf-400',
@@ -238,6 +223,8 @@ function PestImage({ pest, className = 'aspect-[16/10]' }) {
 }
 
 function PestDetailModal({ pest, onClose }) {
+  // Re-use the same image lookup as the card. PestImage component handles
+  // its own caching, but we want to read it directly here for the hero background.
   const [heroImg, setHeroImg] = useState(null)
 
   useEffect(() => {
@@ -257,6 +244,7 @@ function PestDetailModal({ pest, onClose }) {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-leaf-950/60 backdrop-blur-sm animate-fade-in" onClick={onClose}>
       <div className="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-lifted" onClick={(e) => e.stopPropagation()}>
         <div className="relative">
+          {/* Hero header — uses Wikipedia image as background when available */}
           <div className="relative overflow-hidden rounded-t-3xl">
             {heroImg && (
               <img src={heroImg} alt="" aria-hidden="true"
@@ -344,7 +332,6 @@ function ReportedOutbreaks() {
 
   return (
     <div className="space-y-4">
-      {/* Alert info card */}
       <div className="card p-4 bg-gradient-to-br from-earth-50 to-leaf-50">
         <p className="text-sm text-leaf-800">
           <AlertTriangle size={14} className="inline mr-1.5 text-earth-600" />
@@ -378,7 +365,7 @@ function ReportedOutbreaks() {
             return (
               <div key={r.id} className="card p-4 flex items-start gap-4">
                 {r.image_path ? (
-                  <img src={uploadUrl(r.image_path)} alt="" className="w-20 h-20 rounded-2xl object-cover flex-shrink-0" />
+                  <img src={pickImageSrc(r)} alt="" className="w-20 h-20 rounded-2xl object-cover flex-shrink-0" />
                 ) : (
                   <div className="w-20 h-20 rounded-2xl bg-leaf-100 flex items-center justify-center flex-shrink-0">
                     <Bug size={28} className="text-leaf-600" />

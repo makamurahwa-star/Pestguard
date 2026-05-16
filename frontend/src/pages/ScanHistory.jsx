@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import {
   History as HistoryIcon, Camera, Calendar, Trash2, X, ArrowRight, Bug,
 } from 'lucide-react'
-import { scansApi, uploadUrl } from '../lib/api'
+import { scansApi, pickImageSrc } from '../lib/api'
 import { usePestData } from '../context/PestDataContext.jsx'
 import ConfirmModal from '../components/ConfirmModal.jsx'
 import toast from 'react-hot-toast'
@@ -74,7 +74,7 @@ export default function ScanHistory() {
               <button key={scan.id} onClick={() => setSelected({ scan, info })}
                 className="card overflow-hidden hover:shadow-lifted hover:-translate-y-0.5 transition-all text-left group">
                 <div className="aspect-square bg-leaf-100 relative overflow-hidden">
-                  <img src={uploadUrl(scan.image_path)} alt=""
+                  <img src={pickImageSrc(scan)} alt=""
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <span className="absolute top-2 right-2 px-2 py-1 rounded-full bg-white/95 text-[10px] font-mono font-bold text-leaf-900 shadow">
                     {conf}%
@@ -122,7 +122,7 @@ function DetailModal({ scan, info, onClose, onDelete }) {
         </div>
 
         <div className="p-6 space-y-5">
-          <img src={uploadUrl(scan.image_path)} alt="" className="w-full max-h-96 object-contain rounded-2xl bg-leaf-100" />
+          <img src={pickImageSrc(scan)} alt="" className="w-full max-h-96 object-contain rounded-2xl bg-leaf-100" />
 
           <div>
             <p className="label">Confidence</p>

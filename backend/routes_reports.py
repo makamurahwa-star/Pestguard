@@ -1,5 +1,6 @@
 import os
 import uuid
+import base64
 from datetime import datetime, timedelta
 from flask import Blueprint, request, jsonify, current_app
 from flask_jwt_extended import jwt_required, get_jwt_identity
@@ -7,6 +8,26 @@ from sqlalchemy import func
 from models import db, Report, Scan
 
 reports_bp = Blueprint('reports', __name__, url_prefix='/api/reports')
+
+
+def _store_report_image(image_file):
+    """Returns (image_path, image_data). Tries filesystem first, falls back to DB."""
+    ext = image_file.filename.rsplit('.', 1)[-1].lower()
+    if ext not in current_app.config['ALLOWED_EXTENSIONS']:
+        return None, None, 'invalid_type'
+    mime = image_file.mimetype or f"image/{ext}"
+    image_bytes = image_file.read()
+    upload_folder = current_app.config['UPLOAD_FOLDER']
+    try:
+        os.makedirs(os.path.join(upload_folder, 'reports'), exist_ok=True)
+        filename = f"{uuid.uuid4().hex}.{ext}"
+        with open(os.path.join(upload_folder, 'reports', filename), 'wb') as f:
+            f.write(image_bytes)
+        return f"reports/{filename}", None, None
+    except (OSError, PermissionError) as e:
+        print(f"[storage] Falling back to in-DB storage for report image: {e}")
+        b64 = base64.b64encode(image_bytes).decode('ascii')
+        return None, f"data:{mime};base64,{b64}", None
 
 
 @reports_bp.post('')
@@ -37,19 +58,14 @@ def create_report():
     if severity not in ('low', 'medium', 'high', 'critical'):
         return jsonify({'error': 'Invalid severity'}), 400
 
-    # If pest_class doesn't exist in our class list, still accept (frontend already validates)
     pest_class = data['pest_class']
 
     image_path = None
+    image_data = None
     if image_file and image_file.filename:
-        ext = image_file.filename.rsplit('.', 1)[-1].lower()
-        if ext not in current_app.config['ALLOWED_EXTENSIONS']:
+        image_path, image_data, err = _store_report_image(image_file)
+        if err == 'invalid_type':
             return jsonify({'error': 'Invalid image type'}), 400
-        filename = f"{uuid.uuid4().hex}.{ext}"
-        upload_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'reports')
-        os.makedirs(upload_dir, exist_ok=True)
-        image_file.save(os.path.join(upload_dir, filename))
-        image_path = f"reports/{filename}"
 
     area = data.get('estimated_area_hectares')
     try:
@@ -75,6 +91,7 @@ def create_report():
         region=data.get('region'),
         description=data.get('description'),
         image_path=image_path,
+        image_data=image_data,
     )
     db.session.add(report)
     db.session.commit()
@@ -84,8 +101,6 @@ def create_report():
 @reports_bp.get('')
 @jwt_required()
 def list_reports():
-    """List reports. By default returns everyone's (so the user can see outbreaks
-    near them); set ?mine=true to filter to the current user's reports only."""
     user_id = int(get_jwt_identity())
     query = Report.query
 
@@ -184,7 +199,6 @@ def stats():
     days = request.args.get('days', 30, type=int)
     since = datetime.utcnow() - timedelta(days=days)
 
-    # User's stats
     my_total = Report.query.filter_by(user_id=user_id).count()
     my_recent = Report.query.filter(Report.user_id == user_id, Report.created_at >= since).count()
     my_today = Report.query.filter(
@@ -194,13 +208,11 @@ def stats():
     my_active = Report.query.filter_by(user_id=user_id, status='active').count()
     my_scans = Scan.query.filter_by(user_id=user_id).count()
 
-    # Most-scanned pest
     top_pest_row = db.session.query(Scan.predicted_class, func.count(Scan.id).label('c')) \
         .filter(Scan.user_id == user_id).group_by(Scan.predicted_class) \
         .order_by(func.count(Scan.id).desc()).first()
     top_pest = top_pest_row[0] if top_pest_row else None
 
-    # Community-wide breakdown for charts
     by_pest = dict(db.session.query(Report.pest_class, func.count(Report.id))
                    .group_by(Report.pest_class).all())
     by_severity = dict(db.session.query(Report.severity, func.count(Report.id))

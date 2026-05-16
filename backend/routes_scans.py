@@ -1,6 +1,7 @@
 import os
 import uuid
 import json
+import base64
 from flask import Blueprint, request, jsonify, current_app
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from models import db, Scan
@@ -14,10 +15,31 @@ def _allowed(filename):
         filename.rsplit('.', 1)[1].lower() in current_app.config['ALLOWED_EXTENSIONS']
 
 
+def _store_image(image_bytes, mime_type, ext, subfolder):
+    """
+    Store an uploaded image. Returns (image_path, image_data).
+    - Prefers filesystem when DATA_DIR is set and writable (local dev or paid Render disk).
+    - Falls back to embedding the image as a data URI inside the database
+      (free Render tier with no persistent disk).
+    """
+    upload_folder = current_app.config['UPLOAD_FOLDER']
+    try:
+        os.makedirs(os.path.join(upload_folder, subfolder), exist_ok=True)
+        filename = f"{uuid.uuid4().hex}.{ext}"
+        full_path = os.path.join(upload_folder, subfolder, filename)
+        with open(full_path, 'wb') as f:
+            f.write(image_bytes)
+        return f"{subfolder}/{filename}", None
+    except (OSError, PermissionError) as e:
+        # No writable disk — embed in DB
+        print(f"[storage] Falling back to in-DB storage: {e}")
+        b64 = base64.b64encode(image_bytes).decode('ascii')
+        return None, f"data:{mime_type};base64,{b64}"
+
+
 @scans_bp.post('')
 @jwt_required()
 def create_scan():
-    """Run the AI on an uploaded image and persist the scan."""
     user_id = int(get_jwt_identity())
     if 'image' not in request.files:
         return jsonify({'error': 'No image provided'}), 400
@@ -34,8 +56,6 @@ def create_scan():
         image_size=current_app.config['IMAGE_SIZE'],
     )
 
-    # Reject images that don't look like a pest at all (uniform predictions).
-    # We don't save these to the user's scan history.
     if result.get('not_a_pest'):
         return jsonify({
             'error': 'no_pest_detected',
@@ -45,16 +65,13 @@ def create_scan():
         }), 422
 
     ext = file.filename.rsplit('.', 1)[1].lower()
-    filename = f"{uuid.uuid4().hex}.{ext}"
-    upload_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'scans')
-    os.makedirs(upload_dir, exist_ok=True)
-    with open(os.path.join(upload_dir, filename), 'wb') as f:
-        f.write(image_bytes)
-    relative_path = f"scans/{filename}"
+    mime = file.mimetype or f"image/{ext}"
+    image_path, image_data = _store_image(image_bytes, mime, ext, 'scans')
 
     scan = Scan(
         user_id=user_id,
-        image_path=relative_path,
+        image_path=image_path,
+        image_data=image_data,
         predicted_class=result['predicted_class'],
         confidence=result['confidence'],
         all_predictions=json.dumps(result['all_predictions']),
@@ -98,13 +115,13 @@ def delete_scan(scan_id):
     scan = Scan.query.filter_by(id=scan_id, user_id=user_id).first()
     if not scan:
         return jsonify({'error': 'Not found'}), 404
-    # remove image file
-    img_path = os.path.join(current_app.config['UPLOAD_FOLDER'], scan.image_path)
-    try:
-        if os.path.exists(img_path):
-            os.remove(img_path)
-    except Exception:
-        pass
+    if scan.image_path:
+        img_path = os.path.join(current_app.config['UPLOAD_FOLDER'], scan.image_path)
+        try:
+            if os.path.exists(img_path):
+                os.remove(img_path)
+        except Exception:
+            pass
     db.session.delete(scan)
     db.session.commit()
     return jsonify({'message': 'Scan deleted'}), 200
