@@ -1,12 +1,12 @@
-# Optional: pest detection model dependencies.
-# Install only when you have a trained YOLO .pt model to plug in.
+# Optional ML dependencies — CPU-only Torch for free hosting tiers (~150 MB
+# instead of ~2.5 GB of unused CUDA libraries).
 #
-# Works on Python 3.10–3.12 (you have venv312, so you're set).
-# On Python 3.13+ wait for newer torch releases.
-#
-# Install with:
-#   pip install -r requirements-ml.txt
-#
+# The --extra-index-url line points pip at PyTorch's CPU-only wheels.
+# torch and torchvision must be pinned to versions that have CPU wheels
+# available on that index.
+
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+torch==2.4.1+cpu
+torchvision==0.19.1+cpu
 ultralytics>=8.3
-torch>=2.1
-torchvision>=0.16
