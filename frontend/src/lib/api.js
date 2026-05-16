@@ -1,6 +1,9 @@
 import axios from 'axios'
 
-const API_BASE = '/api'
+// In production, point at the deployed Render backend.
+// In development, leave it empty so Vite's dev proxy handles /api → localhost:5000.
+const API_BASE = (import.meta.env.VITE_API_URL || '') + '/api'
+const UPLOAD_BASE = (import.meta.env.VITE_API_URL || '')
 
 export const api = axios.create({
   baseURL: API_BASE,
@@ -30,7 +33,7 @@ api.interceptors.response.use(
 export function uploadUrl(rel) {
   if (!rel) return null
   if (rel.startsWith('http')) return rel
-  return `/uploads/${rel}`
+  return `${UPLOAD_BASE}/uploads/${rel}`
 }
 
 export const authApi = {
