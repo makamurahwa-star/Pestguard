@@ -1,0 +1,1009 @@
+{
+  "_meta": {
+    "dataset": "IP102",
+    "description": "IP102 is a large-scale benchmark dataset for insect pest recognition with 102 classes. This file maps every class to a farmer-friendly common name, description, affected crops, symptoms, organic & chemical control measures, and prevention tips.",
+    "note": "When the AI returns a scientific class name, the frontend looks it up here and shows the friendly_name first.",
+    "fallback": {
+      "friendly_name": "Unknown Pest",
+      "scientific_name": "Unknown",
+      "description": "We were unable to confidently match this image to a pest in our library. Please try a clearer photo, or seek advice from an agricultural expert.",
+      "affected_crops": "Various",
+      "symptoms": "Refer to expert advice.",
+      "organic_control": "Maintain field hygiene, remove weeds, and inspect crops regularly. Consult an agronomist for tailored advice.",
+      "chemical_control": "Do not apply chemicals without expert identification — wrong pesticides can damage crops and harm beneficial insects.",
+      "prevention": "Practice crop rotation, plant resistant varieties, and monitor fields at least twice weekly during the growing season.",
+      "severity_default": "medium"
+    }
+  },
+
+  "rice leaf roller": {
+    "friendly_name": "Rice Leaf Roller",
+    "scientific_name": "Cnaphalocrocis medinalis",
+    "description": "A common rice pest whose larvae roll rice leaves into tubes and feed inside, leaving white streaks visible from a distance.",
+    "affected_crops": "Rice, occasionally maize and grasses",
+    "symptoms": "Rolled or folded leaves with white longitudinal streaks; scraped leaf surfaces; reduced grain filling.",
+    "organic_control": "Release Trichogramma egg parasitoids; spray neem oil; encourage spiders and dragonflies in paddies; flood and drain to disturb larvae.",
+    "chemical_control": "Apply chlorantraniliprole or flubendiamide at the early larval stage; rotate insecticide groups to prevent resistance.",
+    "prevention": "Avoid excess nitrogen fertiliser; plant resistant rice varieties; synchronise planting dates within a community."
+  },
+  "rice leaf caterpillar": {
+    "friendly_name": "Rice Leaf Caterpillar",
+    "scientific_name": "Naranga aenescens",
+    "description": "Caterpillars that chew large irregular holes through rice leaves, reducing the photosynthetic area of the plant.",
+    "affected_crops": "Rice",
+    "symptoms": "Ragged, holed leaves; defoliation in heavy infestations; visible green-brown caterpillars feeding at night.",
+    "organic_control": "Use Bacillus thuringiensis (Bt) sprays; hand-pick larvae in small plots; conserve natural enemies like spiders and dragonflies.",
+    "chemical_control": "Spray emamectin benzoate or spinosad targeting young larvae; apply in the evening.",
+    "prevention": "Keep bunds and field edges clean of weeds; avoid late planting outside the synchronised window."
+  },
+  "paddy stem maggot": {
+    "friendly_name": "Paddy Stem Maggot",
+    "scientific_name": "Chlorops oryzae",
+    "description": "A fly whose larvae tunnel inside rice stems, killing the central shoot and producing characteristic 'deadhearts'.",
+    "affected_crops": "Rice",
+    "symptoms": "Yellow, drying central shoots that pull out easily (deadheart); reduced tillering; stunted plants.",
+    "organic_control": "Encourage natural parasitoid wasps; drain water periodically to disturb life cycle; remove and destroy affected tillers.",
+    "chemical_control": "Apply cartap hydrochloride or fipronil granules at transplanting; foliar spray with thiamethoxam if infestation appears.",
+    "prevention": "Use resistant varieties; avoid staggered planting; plough fields after harvest to expose pupae."
+  },
+  "asiatic rice borer": {
+    "friendly_name": "Asian Rice Stem Borer",
+    "scientific_name": "Chilo suppressalis",
+    "description": "Larvae bore into rice stems and feed inside, causing deadhearts in young plants and whiteheads in mature ones.",
+    "affected_crops": "Rice, maize, sorghum",
+    "symptoms": "Deadheart (dead central shoot); whitehead (empty panicles); small entry holes on stems with frass.",
+    "organic_control": "Release Trichogramma egg parasitoids; use light traps to catch adult moths; remove and burn stubble after harvest.",
+    "chemical_control": "Granular cartap or fipronil at peak egg-laying; chlorantraniliprole spray for young larvae.",
+    "prevention": "Plough under and destroy stubble; synchronise planting; use resistant varieties; avoid excess nitrogen."
+  },
+  "yellow rice borer": {
+    "friendly_name": "Yellow Rice Stem Borer",
+    "scientific_name": "Scirpophaga incertulas",
+    "description": "Yellow moths whose larvae bore into rice tillers; one of the most destructive rice stem borers in Asia.",
+    "affected_crops": "Rice",
+    "symptoms": "Deadhearts in vegetative stage; whiteheads at panicle stage; moths visible at night near lights.",
+    "organic_control": "Release Trichogramma japonicum; install pheromone traps; flood fields after harvest to drown pupae.",
+    "chemical_control": "Chlorantraniliprole, cartap, or fipronil at early larval stage; rotate active ingredients.",
+    "prevention": "Plough fields right after harvest; remove alternate host grasses; synchronise community planting dates."
+  },
+  "rice gall midge": {
+    "friendly_name": "Rice Gall Midge",
+    "scientific_name": "Orseolia oryzae",
+    "description": "A tiny fly whose larvae cause the central shoot of rice tillers to form a hollow tubular 'silver shoot' or onion leaf.",
+    "affected_crops": "Rice",
+    "symptoms": "Tubular silver shoots replacing leaves; affected tillers do not produce panicles; excess tillering.",
+    "organic_control": "Avoid late planting; plough infested stubble; conserve parasitoid Platygaster oryzae.",
+    "chemical_control": "Apply carbofuran or fipronil granules in standing water; foliar spray with chlorpyrifos if needed.",
+    "prevention": "Use resistant varieties (e.g. IR36, IR64); plant within recommended sowing window."
+  },
+  "rice stemfly": {
+    "friendly_name": "Rice Stem Fly",
+    "scientific_name": "Pachydiplosis oryzae",
+    "description": "Larvae bore into the developing rice tiller, distorting growth and reducing panicle formation.",
+    "affected_crops": "Rice",
+    "symptoms": "Twisted or distorted shoots; reduced panicle emergence; thin tillers.",
+    "organic_control": "Encourage natural enemies; use light traps; remove infested tillers from nursery.",
+    "chemical_control": "Systemic insecticides like imidacloprid or thiamethoxam at nursery stage.",
+    "prevention": "Use clean nursery stock; avoid waterlogging young transplants; rotate with non-host crops."
+  },
+  "brown plant hopper": {
+    "friendly_name": "Brown Planthopper",
+    "scientific_name": "Nilaparvata lugens",
+    "description": "Sap-sucking hoppers that cluster at the base of rice plants. Heavy infestations cause 'hopperburn' — circular patches of dried, dead rice.",
+    "affected_crops": "Rice",
+    "symptoms": "Yellowing then drying of plants in circular patches (hopperburn); honeydew and sooty mould; transmits rice viruses.",
+    "organic_control": "Drain field periodically; release mirid bugs (Cyrtorhinus lividipennis); avoid broad-spectrum sprays that kill natural enemies.",
+    "chemical_control": "Buprofezin or pymetrozine; avoid overuse of pyrethroids which can cause resurgence.",
+    "prevention": "Use resistant varieties; avoid excess nitrogen; maintain proper plant spacing for ventilation."
+  },
+  "white backed plant hopper": {
+    "friendly_name": "White-backed Planthopper",
+    "scientific_name": "Sogatella furcifera",
+    "description": "A planthopper distinguished by a white stripe on its back. Sucks rice sap and transmits virus diseases.",
+    "affected_crops": "Rice",
+    "symptoms": "Yellowing leaves; stunted growth; honeydew; transmits Rice Black-Streaked Dwarf Virus.",
+    "organic_control": "Encourage spiders and mirid predators; drain fields; remove weeds that host the pest.",
+    "chemical_control": "Buprofezin at nymph stage; thiamethoxam or dinotefuran for adults.",
+    "prevention": "Plant resistant varieties; avoid dense planting; rogue infected plants early."
+  },
+  "small brown plant hopper": {
+    "friendly_name": "Small Brown Planthopper",
+    "scientific_name": "Laodelphax striatellus",
+    "description": "A small brown hopper that transmits dangerous rice virus diseases including stripe virus.",
+    "affected_crops": "Rice, wheat, maize",
+    "symptoms": "Stunting and yellowing; viral disease symptoms; sticky honeydew on lower leaves.",
+    "organic_control": "Conserve natural enemies; remove grass weeds around fields; use yellow sticky traps.",
+    "chemical_control": "Pymetrozine, buprofezin, or imidacloprid; rotate to manage resistance.",
+    "prevention": "Avoid planting near infected wheat fields; use certified seed; resistant varieties."
+  },
+  "rice water weevil": {
+    "friendly_name": "Rice Water Weevil",
+    "scientific_name": "Lissorhoptrus oryzophilus",
+    "description": "Adults feed on rice leaves, but the more damaging larvae feed on submerged roots, weakening plants.",
+    "affected_crops": "Rice",
+    "symptoms": "Longitudinal feeding scars on leaves; weak plants that lodge; reduced root mass.",
+    "organic_control": "Drain field briefly to expose larvae; encourage predatory beetles; delay flooding after transplant.",
+    "chemical_control": "Lambda-cyhalothrin or fipronil; seed treatment with thiamethoxam.",
+    "prevention": "Delayed flooding; rotate with dry crops; clean equipment between fields."
+  },
+  "rice leafhopper": {
+    "friendly_name": "Green Rice Leafhopper",
+    "scientific_name": "Nephotettix virescens",
+    "description": "Bright green leafhoppers that suck rice sap and transmit Rice Tungro Virus — one of the most damaging rice diseases.",
+    "affected_crops": "Rice",
+    "symptoms": "Yellow-orange discolouration; stunting; severely reduced tillering from tungro infection.",
+    "organic_control": "Use yellow sticky traps; conserve mirid bug predators; remove tungro-infected plants immediately.",
+    "chemical_control": "Imidacloprid or thiamethoxam early in season; do not over-apply.",
+    "prevention": "Plant resistant varieties; avoid staggered planting; rogue diseased plants."
+  },
+  "grain spreader thrips": {
+    "friendly_name": "Grain Spreader Thrips",
+    "scientific_name": "Haplothrips ganglbaueri",
+    "description": "Tiny thrips that feed on developing rice grains, causing chaffy spikelets and reducing yield.",
+    "affected_crops": "Rice, wheat",
+    "symptoms": "Chaffy, empty spikelets; brown streaks on grains; silvery patches on leaf sheaths.",
+    "organic_control": "Spray neem oil at booting; conserve predatory thrips and mites; use sticky traps.",
+    "chemical_control": "Lambda-cyhalothrin or spinosad at panicle emergence.",
+    "prevention": "Avoid late planting; manage weeds within and around fields."
+  },
+  "rice shell pest": {
+    "friendly_name": "Rice Husk Pest",
+    "scientific_name": "Stenchaetothrips biformis",
+    "description": "Causes damage to rice husks and developing grains, reducing milling quality.",
+    "affected_crops": "Rice",
+    "symptoms": "Discoloured husks; reduced grain weight; downgraded milling quality.",
+    "organic_control": "Maintain field hygiene; neem sprays at booting stage.",
+    "chemical_control": "Lambda-cyhalothrin or chlorpyrifos at grain-filling.",
+    "prevention": "Synchronised planting and harvest; remove ratoon shoots."
+  },
+  "grub": {
+    "friendly_name": "White Grub (Beetle Larva)",
+    "scientific_name": "Holotrichia spp.",
+    "description": "C-shaped white larvae of scarab beetles that feed on roots of many crops, causing plants to wilt and die.",
+    "affected_crops": "Maize, groundnut, sugarcane, vegetables, rice nursery",
+    "symptoms": "Sudden wilting; easily uprooted plants; chewed roots; white C-shaped larvae found in soil.",
+    "organic_control": "Deep ploughing to expose grubs to predators; flood irrigation; entomopathogenic nematodes; light traps for adults.",
+    "chemical_control": "Chlorpyrifos or imidacloprid soil drench; seed treatment with thiamethoxam.",
+    "prevention": "Rotate with non-host crops; remove crop residue; light-trap adult beetles in May–June."
+  },
+  "mole cricket": {
+    "friendly_name": "Mole Cricket",
+    "scientific_name": "Gryllotalpa orientalis",
+    "description": "Burrowing crickets that tunnel through soil, cutting roots and seedlings of many crops.",
+    "affected_crops": "Maize, vegetables, lawn grass, rice seedlings",
+    "symptoms": "Raised soil tunnels; cut-off seedlings; uprooted young plants; visible in fresh tunnels at dawn.",
+    "organic_control": "Soap-water flood in tunnels brings them up; encourage poultry to feed; trap with kerosene-water buckets.",
+    "chemical_control": "Bait with carbaryl-bran-molasses; chlorpyrifos soil treatment in heavily infested fields.",
+    "prevention": "Keep field clean of debris; flood-irrigate periodically; encourage birds and toads."
+  },
+  "wireworm": {
+    "friendly_name": "Wireworm (Click Beetle Larva)",
+    "scientific_name": "Agriotes spp.",
+    "description": "Slender, hard-bodied larvae that live in soil and bore into roots, tubers and germinating seeds.",
+    "affected_crops": "Maize, potato, sweet potato, vegetables, cereals",
+    "symptoms": "Poor germination; tunnels in tubers; weak, yellowed seedlings; visible orange-brown larvae in soil.",
+    "organic_control": "Crop rotation with brassicas; bait traps with potato slices; deep ploughing.",
+    "chemical_control": "Seed treatment with imidacloprid or thiamethoxam; fipronil soil application before planting.",
+    "prevention": "Avoid planting after long fallow or grass cover; rotate; test soil for wireworm populations."
+  },
+  "white margined moth": {
+    "friendly_name": "White-margined Moth",
+    "scientific_name": "Spilosoma obliqua",
+    "description": "Hairy caterpillars (called Bihar hairy caterpillar) that defoliate many crops in large numbers.",
+    "affected_crops": "Soybean, jute, sunflower, cotton, vegetables",
+    "symptoms": "Skeletonised leaves; gregarious hairy caterpillars in early stages; large defoliation patches.",
+    "organic_control": "Hand-pick egg masses and young larvae; install light traps; apply Bt or neem on small caterpillars.",
+    "chemical_control": "Quinalphos, chlorpyrifos, or emamectin benzoate when larvae are young.",
+    "prevention": "Plough fields to destroy pupae; remove weeds along bunds; community-level synchronised action."
+  },
+  "black cutworm": {
+    "friendly_name": "Black Cutworm",
+    "scientific_name": "Agrotis ipsilon",
+    "description": "Caterpillars that cut young plants off at the soil line during the night, leaving fallen seedlings.",
+    "affected_crops": "Maize, vegetables, tobacco, beans, cotton seedlings",
+    "symptoms": "Seedlings cut at base; missing plant stands; caterpillars hiding under clods or in soil during day.",
+    "organic_control": "Hand-pick at night with torchlight; bait traps; plough exposure to predators; Bt sprays.",
+    "chemical_control": "Chlorpyrifos or lambda-cyhalothrin spray on soil at dusk; bait stations with insecticide.",
+    "prevention": "Clean fields of weeds before planting; deep ploughing two weeks before sowing."
+  },
+  "large cutworm": {
+    "friendly_name": "Large Cutworm",
+    "scientific_name": "Agrotis tokionis",
+    "description": "Larger species of cutworm with similar habits to the black cutworm but causing heavier per-plant damage.",
+    "affected_crops": "Maize, vegetables, tobacco",
+    "symptoms": "Cut seedlings; large frass pellets; caterpillars up to 5 cm coiled under soil.",
+    "organic_control": "Light traps for adult moths; encourage ground beetles; soil cultivation.",
+    "chemical_control": "Chlorpyrifos bait; foliar lambda-cyhalothrin at dusk.",
+    "prevention": "Avoid planting straight after fallow; rotate with non-host crops."
+  },
+  "yellow cutworm": {
+    "friendly_name": "Yellow Cutworm",
+    "scientific_name": "Agrotis flammatra",
+    "description": "Yellow-brown cutworm species that damages seedlings of cereals and vegetables overnight.",
+    "affected_crops": "Wheat, vegetables, cotton",
+    "symptoms": "Notched and felled seedlings; ragged leaves on older plants.",
+    "organic_control": "Hand removal; bait traps; promote ground-beetle habitat with cover strips.",
+    "chemical_control": "Chlorpyrifos or cypermethrin at base of plants in the evening.",
+    "prevention": "Clean cultivation; rotation with cereals if previous crop was vegetables."
+  },
+  "red spider": {
+    "friendly_name": "Red Spider Mite",
+    "scientific_name": "Tetranychus cinnabarinus",
+    "description": "Tiny red mites that suck sap from leaves, causing yellow stippling, webbing, and eventual leaf drop.",
+    "affected_crops": "Cotton, beans, tomato, eggplant, ornamentals",
+    "symptoms": "Yellow stippling on upper leaf surface; fine webbing on undersides; leaves drying and dropping.",
+    "organic_control": "Strong water sprays on leaf undersides; release predatory mites (Phytoseiulus); neem oil; soap sprays.",
+    "chemical_control": "Abamectin, spiromesifen, or bifenazate — avoid repeated use of same group.",
+    "prevention": "Avoid water stress (mites thrive in dust and drought); maintain humidity; remove infested plants."
+  },
+  "corn borer": {
+    "friendly_name": "Asian Corn Borer",
+    "scientific_name": "Ostrinia furnacalis",
+    "description": "Caterpillars bore into maize stalks, tassels, and ears, weakening the plant and ruining cobs.",
+    "affected_crops": "Maize, sorghum",
+    "symptoms": "Holes in stalks and ears; sawdust-like frass; broken tassels; lodging of stalks.",
+    "organic_control": "Release Trichogramma egg parasitoids; Bt corn varieties; remove stubble after harvest.",
+    "chemical_control": "Chlorantraniliprole or emamectin benzoate at egg hatch; granular carbofuran in whorl.",
+    "prevention": "Plough stubble immediately after harvest; synchronise planting; resistant hybrids."
+  },
+  "army worm": {
+    "friendly_name": "Armyworm",
+    "scientific_name": "Mythimna separata",
+    "description": "Caterpillars that move in 'armies' across fields, stripping leaves of cereals and grasses overnight.",
+    "affected_crops": "Maize, rice, wheat, sorghum, pasture grasses",
+    "symptoms": "Sudden severe defoliation in patches; ragged leaves; caterpillars active at night, hiding by day.",
+    "organic_control": "Use pheromone traps for monitoring; Bt sprays on small larvae; deep ditches around fields to trap marching larvae.",
+    "chemical_control": "Emamectin benzoate, chlorantraniliprole, or spinetoram; spray in the evening; rotate groups.",
+    "prevention": "Scout fields weekly; deep ploughing; community-wide synchronised action when outbreak detected."
+  },
+  "aphids": {
+    "friendly_name": "Aphids",
+    "scientific_name": "Aphidoidea",
+    "description": "Tiny soft-bodied insects (green, black, or brown) that cluster on new growth, sucking sap and transmitting viruses.",
+    "affected_crops": "Almost all crops — cotton, maize, beans, vegetables, fruit trees, cereals",
+    "symptoms": "Curled and yellowing leaves; sticky honeydew with sooty mould; transmitted virus diseases; stunted growth.",
+    "organic_control": "Spray strong water jets; introduce ladybird beetles and lacewings; neem oil; insecticidal soap; reflective mulches.",
+    "chemical_control": "Imidacloprid, thiamethoxam, or flonicamid; avoid broad-spectrum sprays that kill aphid predators.",
+    "prevention": "Avoid excess nitrogen; encourage beneficial insects with flowering strips; remove infested shoots early."
+  },
+  "potosiabre vitarsis": {
+    "friendly_name": "Bronze Fruit Beetle",
+    "scientific_name": "Potosia brevitarsis",
+    "description": "Adult scarab beetles that feed on ripening fruit and flowers; larvae feed on compost and decaying matter.",
+    "affected_crops": "Stone fruits, grapes, figs, apples",
+    "symptoms": "Damaged ripening fruit; beetles visible on fruit clusters in summer; secondary fungal infection of damaged fruit.",
+    "organic_control": "Hand-pick adults at dawn; pheromone traps; bag fruit clusters; remove fallen rotten fruit.",
+    "chemical_control": "Pyrethroid sprays during heavy adult flight; observe pre-harvest interval strictly.",
+    "prevention": "Sanitation — remove decaying organic matter where larvae develop; net high-value crops."
+  },
+  "peach borer": {
+    "friendly_name": "Peach Tree Borer",
+    "scientific_name": "Carposina niponensis",
+    "description": "Larvae bore into peach and other stone fruit, causing internal damage and premature fruit drop.",
+    "affected_crops": "Peach, apricot, plum, cherry",
+    "symptoms": "Gummy exudate at fruit base; wormy interior of fruit; premature fruit drop; small entry holes.",
+    "organic_control": "Pheromone traps and mating disruption; bag fruits early; destroy fallen fruit.",
+    "chemical_control": "Chlorantraniliprole or emamectin benzoate during egg hatch; multiple sprays may be needed.",
+    "prevention": "Sanitation orchards; prune for airflow; monitor with pheromone traps."
+  },
+  "english grain aphid": {
+    "friendly_name": "English Grain Aphid",
+    "scientific_name": "Sitobion avenae",
+    "description": "A pinkish-brown aphid that infests cereal crops, especially wheat heads, reducing grain yield and transmitting viruses.",
+    "affected_crops": "Wheat, barley, oats, rye",
+    "symptoms": "Aphids on flag leaves and ears; sticky honeydew; reduced grain fill; barley yellow dwarf virus symptoms.",
+    "organic_control": "Conserve ladybirds and parasitoid wasps; avoid early broad-spectrum sprays; encourage hedgerow habitat.",
+    "chemical_control": "Pirimicarb (selective) or pymetrozine — preserve natural enemies.",
+    "prevention": "Plant tolerant varieties; later sowing to escape virus vectors; balanced fertilisation."
+  },
+  "green bug": {
+    "friendly_name": "Greenbug Aphid",
+    "scientific_name": "Schizaphis graminum",
+    "description": "Yellow-green aphid that injects toxic saliva, killing cereal leaves and transmitting viruses.",
+    "affected_crops": "Wheat, sorghum, barley, oats",
+    "symptoms": "Yellow-orange spots on leaves that expand to brown necrosis; leaf death; stunted plants.",
+    "organic_control": "Encourage parasitoid wasp Lysiphlebus testaceipes; conserve ladybirds; tolerant varieties.",
+    "chemical_control": "Sulfoxaflor or pirimicarb; resistance has been reported in some areas — rotate groups.",
+    "prevention": "Plant resistant varieties; avoid stressed monoculture; manage volunteer cereals between seasons."
+  },
+  "bird cherry-oataphid": {
+    "friendly_name": "Bird Cherry-Oat Aphid",
+    "scientific_name": "Rhopalosiphum padi",
+    "description": "Dark olive-green aphid; the primary vector of Barley Yellow Dwarf Virus in cereals.",
+    "affected_crops": "Wheat, barley, oats, rye",
+    "symptoms": "Yellow-purple discolouration; stunting; reduced grain set; honeydew with sooty mould.",
+    "organic_control": "Avoid early autumn sowing in BYDV-prone areas; encourage parasitoids and ladybirds.",
+    "chemical_control": "Pirimicarb or pymetrozine when economic thresholds exceeded.",
+    "prevention": "Adjust sowing date; use tolerant varieties; rogue volunteer cereals."
+  },
+  "wheat blossom midge": {
+    "friendly_name": "Wheat Blossom Midge",
+    "scientific_name": "Sitodiplosis mosellana",
+    "description": "Small orange flies whose larvae feed inside wheat florets, shrivelling developing grains.",
+    "affected_crops": "Wheat, rye",
+    "symptoms": "Shrivelled grains; reduced thousand-grain weight; emerging adults visible at ear emergence.",
+    "organic_control": "Crop rotation with non-host; conserve parasitoid Macroglenes penetrans; ploughing to expose pupae.",
+    "chemical_control": "Lambda-cyhalothrin at ear emergence if adults are flying.",
+    "prevention": "Sow resistant varieties; rotate; monitor with pheromone traps."
+  },
+  "penthaleus major": {
+    "friendly_name": "Redlegged Earth Mite",
+    "scientific_name": "Penthaleus major",
+    "description": "Tiny black mites with red legs that feed on seedlings, causing silvery leaves and stunting.",
+    "affected_crops": "Wheat, canola, pasture, vegetables",
+    "symptoms": "Silvery leaf patches; stunted seedlings; mites visible on cool mornings.",
+    "organic_control": "Crop rotation; pasture spelling; encourage predatory mites.",
+    "chemical_control": "Omethoate or chlorpyrifos at seedling stage if monitoring shows high pressure.",
+    "prevention": "Treat seed; spell paddocks; avoid sowing into heavily infested pasture."
+  },
+  "longlegged spider mite": {
+    "friendly_name": "Longlegged Spider Mite",
+    "scientific_name": "Tetranychus longipes",
+    "description": "A spider mite species with characteristically long legs that webs and damages many crops in hot dry weather.",
+    "affected_crops": "Cotton, beans, vegetables, ornamentals",
+    "symptoms": "Stippling; bronzing of leaves; fine webbing.",
+    "organic_control": "Predatory mites; water spray; neem oil.",
+    "chemical_control": "Abamectin or spiromesifen.",
+    "prevention": "Maintain humidity around plants; avoid dust; encourage natural enemies."
+  },
+  "wheat phloeothrips": {
+    "friendly_name": "Wheat Thrips",
+    "scientific_name": "Haplothrips tritici",
+    "description": "Slender black thrips that feed inside wheat ears, reducing grain set and quality.",
+    "affected_crops": "Wheat, barley",
+    "symptoms": "Whitish, bleached glumes; reduced grain set; thrips visible inside florets.",
+    "organic_control": "Avoid late sowing; sticky traps; encourage predatory thrips and bugs.",
+    "chemical_control": "Lambda-cyhalothrin at heading; spinosad alternative.",
+    "prevention": "Early sowing; resistant varieties where available; rotation."
+  },
+  "wheat sawfly": {
+    "friendly_name": "Wheat Stem Sawfly",
+    "scientific_name": "Cephus pygmaeus",
+    "description": "Wasp-like adults whose larvae bore inside wheat stems, weakening them and causing lodging.",
+    "affected_crops": "Wheat, barley, rye",
+    "symptoms": "Lodged wheat with stems broken near the base; hollow stems with frass inside.",
+    "organic_control": "Solid-stemmed wheat varieties; deep ploughing of stubble; conserve parasitoids.",
+    "chemical_control": "Foliar pyrethroids during adult flight (limited effectiveness once larvae are inside stems).",
+    "prevention": "Use solid-stem cultivars; rotate; destroy stubble after harvest."
+  },
+  "cerodonta denticornis": {
+    "friendly_name": "Beet Leafminer",
+    "scientific_name": "Cerodonta denticornis",
+    "description": "Small fly whose larvae mine inside leaves, leaving wandering pale tunnels.",
+    "affected_crops": "Sugar beet, spinach, chard",
+    "symptoms": "Pale serpentine tunnels in leaves; reduced photosynthesis; weakened plants.",
+    "organic_control": "Remove and destroy mined leaves; yellow sticky traps; conserve parasitoid wasps.",
+    "chemical_control": "Abamectin or cyromazine — apply when mines are still small.",
+    "prevention": "Cover early seedlings; rotate with non-host crops."
+  },
+  "beet fly": {
+    "friendly_name": "Beet Leaf Miner Fly",
+    "scientific_name": "Pegomya hyoscyami",
+    "description": "Fly whose larvae mine beet leaves, creating blister-like blotches that turn brown.",
+    "affected_crops": "Beet, spinach, chard",
+    "symptoms": "White blister mines that turn brown; defoliation in heavy attacks.",
+    "organic_control": "Cover with insect-proof net; remove affected leaves; rotate.",
+    "chemical_control": "Spinosad or cyromazine.",
+    "prevention": "Avoid planting near previous year's beet fields; remove volunteer plants."
+  },
+  "flea beetle": {
+    "friendly_name": "Flea Beetle",
+    "scientific_name": "Phyllotreta striolata",
+    "description": "Tiny shiny beetles that jump like fleas, chewing many small round holes (shotholes) in leaves.",
+    "affected_crops": "Cabbage, radish, mustard, canola, brinjal, beet",
+    "symptoms": "Shothole feeding on leaves; severe damage on seedlings; reduced stand.",
+    "organic_control": "Cover seedlings with insect netting; yellow sticky traps; kaolin clay; neem.",
+    "chemical_control": "Pyrethroids or thiamethoxam seed treatment.",
+    "prevention": "Rotate brassicas; transplant strong, larger seedlings; trap crops (radish)."
+  },
+  "cabbage army worm": {
+    "friendly_name": "Cabbage Armyworm",
+    "scientific_name": "Mamestra brassicae",
+    "description": "Caterpillars that bore into cabbage hearts and feed inside, leaving frass and unmarketable heads.",
+    "affected_crops": "Cabbage, broccoli, cauliflower, kale",
+    "symptoms": "Holes through cabbage heads; greenish frass; larvae found inside heads.",
+    "organic_control": "Bt sprays on young larvae; hand-pick eggs; pheromone traps.",
+    "chemical_control": "Emamectin benzoate or spinosad; avoid heart sprays close to harvest.",
+    "prevention": "Cover with fine mesh until heading; rotate with non-brassica crops."
+  },
+  "beet army worm": {
+    "friendly_name": "Beet Armyworm",
+    "scientific_name": "Spodoptera exigua",
+    "description": "Polyphagous caterpillars that defoliate many crops and can develop resistance quickly to insecticides.",
+    "affected_crops": "Beet, cotton, vegetables, beans, onion",
+    "symptoms": "Skeletonised leaves; window-pane feeding by young larvae; frass on leaves.",
+    "organic_control": "Bt sprays on young larvae; NPV biopesticide; pheromone traps; remove weed hosts.",
+    "chemical_control": "Emamectin benzoate, chlorantraniliprole, or spinetoram — rotate IRAC groups.",
+    "prevention": "Synchronised planting; remove weed hosts (pigweed, lambsquarter); deep ploughing."
+  },
+  "beet spot flies": {
+    "friendly_name": "Beet Spot Fly",
+    "scientific_name": "Pegomya betae",
+    "description": "Fly whose larvae mine beet leaves, creating blister-like spots that ruin foliage quality.",
+    "affected_crops": "Beet, spinach, chard",
+    "symptoms": "White spotty blisters on leaves; brown patches as mines age.",
+    "organic_control": "Remove infested leaves; insect netting; rotation.",
+    "chemical_control": "Spinosad; cyromazine.",
+    "prevention": "Clean cultivation; avoid sequential plantings of same crop."
+  },
+  "meadow moth": {
+    "friendly_name": "Beet Webworm (Meadow Moth)",
+    "scientific_name": "Loxostege sticticalis",
+    "description": "Caterpillars that web leaves together and defoliate sugar beet and many vegetable crops.",
+    "affected_crops": "Sugar beet, sunflower, vegetables, alfalfa",
+    "symptoms": "Webbed and skeletonised leaves; large defoliation patches; gregarious young larvae.",
+    "organic_control": "Bt sprays; pheromone traps; cultivate to disturb pupae.",
+    "chemical_control": "Chlorantraniliprole or emamectin benzoate; spray young larvae.",
+    "prevention": "Weed control; rotation; community monitoring during migration years."
+  },
+  "beet weevil": {
+    "friendly_name": "Beet Weevil",
+    "scientific_name": "Bothynoderes punctiventris",
+    "description": "Large grey weevils that feed on young beet plants in spring, cutting seedlings at the soil line.",
+    "affected_crops": "Sugar beet, fodder beet",
+    "symptoms": "Cut-off seedlings; chewed leaf edges; weevils visible at base of plants in spring.",
+    "organic_control": "Trenching around fields; sticky barriers; rotation away from beet.",
+    "chemical_control": "Imidacloprid seed treatment; pyrethroid foliar spray on emergence.",
+    "prevention": "Long crop rotation; avoid planting next to last year's beet field; deep ploughing."
+  },
+  "sericaorient alismots chulsky": {
+    "friendly_name": "Oriental Sericea Beetle",
+    "scientific_name": "Serica orientalis",
+    "description": "Small scarab beetle whose larvae attack roots and adults feed on foliage of various crops.",
+    "affected_crops": "Cereals, vegetables, pasture",
+    "symptoms": "Yellowing patches in fields; wilted plants; root damage from larvae.",
+    "organic_control": "Light traps; entomopathogenic nematodes; deep ploughing.",
+    "chemical_control": "Imidacloprid soil treatment; foliar pyrethroids for adults.",
+    "prevention": "Rotation; remove crop residues; monitor adult flight."
+  },
+  "alfalfa weevil": {
+    "friendly_name": "Alfalfa Weevil",
+    "scientific_name": "Hypera postica",
+    "description": "Adult weevils lay eggs in alfalfa stems and larvae feed on leaves, reducing forage quality.",
+    "affected_crops": "Alfalfa (lucerne), clover",
+    "symptoms": "Skeletonised and yellow-bronzed alfalfa; small green larvae on leaves; thin first cutting.",
+    "organic_control": "Early cutting; conserve parasitoid Bathyplectes curculionis; rotation.",
+    "chemical_control": "Lambda-cyhalothrin or indoxacarb; observe pre-cut intervals.",
+    "prevention": "Time first cutting to disrupt larvae; encourage natural enemies; tolerant varieties."
+  },
+  "flax budworm": {
+    "friendly_name": "Flax Budworm",
+    "scientific_name": "Heliothis ononis",
+    "description": "Caterpillars that feed on flax buds and capsules, reducing seed yield.",
+    "affected_crops": "Flax, lentil, pea",
+    "symptoms": "Holes in capsules; lost buds and flowers; larvae feeding inside capsules.",
+    "organic_control": "Pheromone traps; Bt sprays.",
+    "chemical_control": "Chlorantraniliprole at flowering.",
+    "prevention": "Rotation; early-maturing varieties to escape peak moth flight."
+  },
+  "alfalfa plant bug": {
+    "friendly_name": "Alfalfa Plant Bug",
+    "scientific_name": "Adelphocoris lineolatus",
+    "description": "Slender greenish-yellow bugs that suck on alfalfa buds and seed pods, reducing seed yield significantly.",
+    "affected_crops": "Alfalfa, clover, vegetables",
+    "symptoms": "Aborted buds and flowers; deformed pods; reduced seed set.",
+    "organic_control": "Sweep-net monitoring; early cutting to break cycle.",
+    "chemical_control": "Lambda-cyhalothrin or thiamethoxam at bud stage.",
+    "prevention": "Manage hedgerows that host bugs; rotation."
+  },
+  "tarnished plant bug": {
+    "friendly_name": "Tarnished Plant Bug",
+    "scientific_name": "Lygus pratensis",
+    "description": "Small mottled brown bugs that suck plant juices from buds, flowers, and fruit, causing distortion.",
+    "affected_crops": "Cotton, alfalfa, strawberry, vegetables, fruit trees",
+    "symptoms": "Aborted flowers and small fruit; 'catfacing' deformities on fruit; pinpoint feeding scars.",
+    "organic_control": "Sweep nets to monitor; weed control around fields; conserve big-eyed bugs and damsel bugs.",
+    "chemical_control": "Flonicamid or thiamethoxam; rotate to manage resistance.",
+    "prevention": "Manage weed reservoirs (especially mullein); maintain ground cover that hosts natural enemies."
+  },
+  "Locustoidea": {
+    "friendly_name": "Locusts (general)",
+    "scientific_name": "Locustoidea",
+    "description": "Large gregarious grasshoppers that form devastating swarms and strip entire crops bare in days.",
+    "affected_crops": "Almost all crops — cereals, vegetables, fruit trees, pasture",
+    "symptoms": "Sudden severe defoliation; visible swarms; ragged crop edges; bare stalks remaining.",
+    "organic_control": "Beat hopper bands at dawn while cold; deep trenches with kerosene; community action.",
+    "chemical_control": "Aerial spraying with malathion, fipronil or IGR (diflubenzuron) by national/regional locust control authorities.",
+    "prevention": "Early warning monitoring; report swarms immediately to authorities; community vigilance during outbreak years."
+  },
+  "lytta polita": {
+    "friendly_name": "Black Blister Beetle",
+    "scientific_name": "Lytta polita",
+    "description": "Long-bodied black beetles that swarm onto crops and chew leaves and flowers; their body fluid blisters skin.",
+    "affected_crops": "Beans, alfalfa, vegetables, ornamentals",
+    "symptoms": "Defoliation in patches; large numbers of black beetles on plants; chewed leaves and flowers.",
+    "organic_control": "Hand-pick (with gloves — they cause blisters); trap with light at night; cultivation in egg-laying season.",
+    "chemical_control": "Pyrethroids; spray in early morning when beetles are sluggish.",
+    "prevention": "Manage grasshopper populations (host of larvae); clean cultivation."
+  },
+  "legume blister beetle": {
+    "friendly_name": "Striped Blister Beetle",
+    "scientific_name": "Epicauta gorhami",
+    "description": "Striped blister beetles that defoliate legumes and many vegetables in summer.",
+    "affected_crops": "Beans, alfalfa, tomato, potato, sugarbeet",
+    "symptoms": "Patches of severe defoliation; striped beetles visible feeding gregariously.",
+    "organic_control": "Hand-pick with gloves; row covers; cultivate to disturb egg masses.",
+    "chemical_control": "Pyrethroids; carbaryl.",
+    "prevention": "Manage grasshopper populations; clean cultivation; spot treatments instead of broadcast."
+  },
+  "blister beetle": {
+    "friendly_name": "Blister Beetle",
+    "scientific_name": "Mylabris phalerata",
+    "description": "Black-and-yellow striped blister beetles that swarm onto legumes and cucurbits in summer.",
+    "affected_crops": "Pulses, sunflower, vegetables",
+    "symptoms": "Skeletonised leaves; chewed flowers; visible swarms.",
+    "organic_control": "Hand-pick (gloves!); netting; light traps for adults.",
+    "chemical_control": "Pyrethroid sprays; carbaryl.",
+    "prevention": "Manage grasshoppers; clean cultivation."
+  },
+  "therioaphis maculata Buckton": {
+    "friendly_name": "Spotted Alfalfa Aphid",
+    "scientific_name": "Therioaphis maculata",
+    "description": "Spotted yellow aphids that inject toxic saliva, killing alfalfa leaves and stunting growth.",
+    "affected_crops": "Alfalfa, clover, beans",
+    "symptoms": "Yellow then brown leaves; defoliation; stunting; honeydew and sooty mould.",
+    "organic_control": "Ladybirds, lacewings, parasitoid wasps; resistant cultivars.",
+    "chemical_control": "Pirimicarb or thiamethoxam if thresholds exceeded.",
+    "prevention": "Use resistant alfalfa varieties; early cutting; rotation."
+  },
+  "odontothrips loti": {
+    "friendly_name": "Lotus Thrips",
+    "scientific_name": "Odontothrips loti",
+    "description": "Small thrips that feed on legume flowers, reducing pod set and seed yield.",
+    "affected_crops": "Alfalfa, clover, lotus, beans",
+    "symptoms": "Distorted flowers; aborted pods; silvery streaks on petals.",
+    "organic_control": "Sticky traps; conserve predatory bugs and mites.",
+    "chemical_control": "Spinosad or imidacloprid at flowering.",
+    "prevention": "Manage weed hosts; rotation."
+  },
+  "Thrips": {
+    "friendly_name": "Thrips",
+    "scientific_name": "Thrips tabaci",
+    "description": "Tiny slender insects (1–2 mm) that rasp plant tissue and suck sap, leaving silvery streaks and transmitting Tomato Spotted Wilt Virus.",
+    "affected_crops": "Onion, tomato, pepper, cotton, beans, cabbage, ornamentals",
+    "symptoms": "Silver-grey streaks on leaves; black frass specks; deformed flowers; curled leaves; virus disease symptoms.",
+    "organic_control": "Hang blue or yellow sticky traps near crops. Apply neem oil weekly. Release predatory mites (Amblyseius cucumeris) or minute pirate bugs. Kaolin clay sprays as a deterrent.",
+    "chemical_control": "Use spinosad, spinetoram, or abamectin. Apply early morning or late evening when thrips are active. Ensure thorough coverage of leaf undersides and flowers. Rotate insecticide groups.",
+    "prevention": "Remove weeds and crop residues around fields. Avoid planting near fields with mature thrips. Reflective mulches. Maintain proper irrigation — thrips thrive in dry, dusty conditions."
+  },
+  "alfalfa seed chalcid": {
+    "friendly_name": "Alfalfa Seed Chalcid",
+    "scientific_name": "Bruchophagus roddi",
+    "description": "Tiny wasps whose larvae feed inside alfalfa seeds, hollowing them and reducing germination.",
+    "affected_crops": "Alfalfa (seed crops), clover",
+    "symptoms": "Hollow seeds; reduced seed weight; emergence holes in seed coats.",
+    "organic_control": "Early harvest before larvae mature; clean seed; rotation.",
+    "chemical_control": "Limited options — most reliance is on prevention.",
+    "prevention": "Clean seed; rotate seed fields; isolate from old alfalfa stands."
+  },
+  "wheat wireworm": {
+    "friendly_name": "Wheat Wireworm",
+    "scientific_name": "Agriotes lineatus",
+    "description": "Slender orange-brown larvae of click beetles that destroy germinating wheat seedlings and cereal roots.",
+    "affected_crops": "Wheat, barley, oats, maize, potato",
+    "symptoms": "Patchy poor germination; missing rows; weak yellowed plants; visible larvae on close inspection.",
+    "organic_control": "Crop rotation; bait traps; deep ploughing.",
+    "chemical_control": "Seed treatment with imidacloprid or thiamethoxam; fipronil soil treatment.",
+    "prevention": "Avoid planting cereals straight after long grass leys; rotate; monitor with bait traps before planting."
+  },
+  "sawfly": {
+    "friendly_name": "Sawfly",
+    "scientific_name": "Pachynematus extensicornis",
+    "description": "Adults look like wasps; their caterpillar-like larvae chew leaves, skeletonising them.",
+    "affected_crops": "Cereals, beet, vegetables, fruit trees",
+    "symptoms": "Skeletonised leaves; caterpillar-like larvae with many legs; defoliation in patches.",
+    "organic_control": "Hand-pick larvae; conserve parasitoid wasps and birds; remove infested shoots.",
+    "chemical_control": "Spinosad or pyrethroids.",
+    "prevention": "Rotation; healthy plants are more tolerant; encourage birds."
+  },
+  "Miridae": {
+    "friendly_name": "Plant Bugs (Mirids)",
+    "scientific_name": "Miridae",
+    "description": "Large family of small bugs that suck plant juices, causing necrotic spots, blackened buds, and aborted fruit.",
+    "affected_crops": "Cotton, vegetables, fruit, ornamentals",
+    "symptoms": "Black sunken spots on shoots; aborted flower buds; misshapen fruit; punctures on stems.",
+    "organic_control": "Sweep-net monitoring; conserve big-eyed bugs and assassin bugs; weed management.",
+    "chemical_control": "Flonicamid or sulfoxaflor; rotate IRAC groups.",
+    "prevention": "Manage weed reservoirs; encourage natural enemies; tolerant varieties."
+  },
+  "wheat ground beetle": {
+    "friendly_name": "Wheat Ground Beetle",
+    "scientific_name": "Zabrus tenebrioides",
+    "description": "Adults and larvae chew on cereal seedlings and developing kernels; one of the few harmful ground beetles.",
+    "affected_crops": "Wheat, barley, rye, oats",
+    "symptoms": "Chewed seedlings; gnawed kernels in heads; visible black beetles at base of plants.",
+    "organic_control": "Crop rotation; remove volunteer cereals; cultivation.",
+    "chemical_control": "Pyrethroids if monitoring shows high pressure; seed treatment.",
+    "prevention": "Rotate cereals with non-cereals; clean field margins."
+  },
+  "wheat blossom midge ": {
+    "friendly_name": "Orange Wheat Blossom Midge",
+    "scientific_name": "Contarinia tritici",
+    "description": "Another wheat midge species whose larvae shrivel developing grains by feeding inside florets.",
+    "affected_crops": "Wheat, rye, triticale",
+    "symptoms": "Shrivelled grains; reduced yield; pale empty glumes.",
+    "organic_control": "Rotation; ploughing; resistant varieties.",
+    "chemical_control": "Lambda-cyhalothrin at flowering during peak adult flight.",
+    "prevention": "Monitor with pheromone traps; resistant varieties; rotation."
+  },
+  "cerodonta denticornis ": {
+    "friendly_name": "Beet Leafminer Fly",
+    "scientific_name": "Cerodonta denticornis",
+    "description": "Fly whose larvae create pale wandering tunnels (mines) inside leaves of beet and other crops.",
+    "affected_crops": "Sugar beet, spinach, chard",
+    "symptoms": "Serpentine pale tunnels in leaves; reduced photosynthesis.",
+    "organic_control": "Insect netting; remove mined leaves; conserve parasitoid wasps.",
+    "chemical_control": "Abamectin or cyromazine on small mines.",
+    "prevention": "Rotation; clean cultivation."
+  },
+  "beet leaf miner": {
+    "friendly_name": "Beet Leaf Miner",
+    "scientific_name": "Liriomyza spp.",
+    "description": "Tiny flies whose larvae mine inside leaves of many crops, leaving white winding tunnels.",
+    "affected_crops": "Beet, tomato, cucumber, lettuce, peas, ornamentals",
+    "symptoms": "White winding tunnels in leaves; reduced photosynthesis; aesthetic damage on ornamentals.",
+    "organic_control": "Yellow sticky traps; remove and destroy mined leaves; conserve parasitoid wasps; netting.",
+    "chemical_control": "Cyromazine or abamectin; spinosad.",
+    "prevention": "Insect-proof greenhouses; rotation; tolerant varieties."
+  },
+  "fruit piercing moth": {
+    "friendly_name": "Fruit-Piercing Moth",
+    "scientific_name": "Eudocima fullonia",
+    "description": "Large moths that pierce ripe fruit with their tough proboscis to feed on juice, causing rot and unmarketable fruit.",
+    "affected_crops": "Citrus, mango, banana, peach, guava, papaya",
+    "symptoms": "Small pin-hole on fruit skin; surrounding flesh rots; secondary fungal infection; fruit drops prematurely.",
+    "organic_control": "Bag valuable fruit; bait traps with fermented fruit and insecticide; net entire trees.",
+    "chemical_control": "Difficult — sprays don't reach adults effectively. Focus on bait and traps.",
+    "prevention": "Remove jungle hosts of larvae (e.g. moonseed vine, Tinospora) within orchards; bag fruit."
+  },
+  "Erythroneura apicalis": {
+    "friendly_name": "Grape Leafhopper",
+    "scientific_name": "Erythroneura apicalis",
+    "description": "Tiny pale leafhoppers that suck on grape leaves, leaving white stippling and reducing vigor.",
+    "affected_crops": "Grapes",
+    "symptoms": "White stippled leaves; reduced photosynthesis; honeydew on lower leaves; reduced grape quality.",
+    "organic_control": "Yellow sticky traps; conserve Anagrus parasitoid wasps; remove broadleaf weeds.",
+    "chemical_control": "Imidacloprid or thiamethoxam; pyrethroids for adults — avoid resurgence by preserving natural enemies.",
+    "prevention": "Manage habitat for parasitoid wasps; avoid drought stress; balanced fertilisation."
+  },
+  "Papilio xuthus": {
+    "friendly_name": "Asian Swallowtail Caterpillar",
+    "scientific_name": "Papilio xuthus",
+    "description": "Large green caterpillars of the citrus swallowtail butterfly that chew citrus leaves, especially on young trees.",
+    "affected_crops": "Citrus (orange, lemon, grapefruit)",
+    "symptoms": "Defoliation of young citrus trees; visible large green caterpillars with eye-spots; damaged growing tips.",
+    "organic_control": "Hand-pick caterpillars; Bt sprays on small larvae; encourage parasitoid wasps and birds.",
+    "chemical_control": "Spinosad or chlorantraniliprole on young larvae if numbers are high.",
+    "prevention": "Tolerate on mature trees (they cause limited damage); netting of nursery trees."
+  },
+  "Panonchus citri McGregor": {
+    "friendly_name": "Citrus Red Mite",
+    "scientific_name": "Panonychus citri",
+    "description": "Tiny red mites that suck citrus leaf cells, causing silvery stippling and leaf drop.",
+    "affected_crops": "Citrus",
+    "symptoms": "Silver to bronze stippling on upper leaf surface; leaf drop; reduced fruit quality.",
+    "organic_control": "Horticultural oil sprays; predatory mites; preserve generalist predators by avoiding pyrethroids.",
+    "chemical_control": "Spirodiclofen, hexythiazox, or abamectin; rotate to prevent resistance.",
+    "prevention": "Avoid dust; preserve natural enemies; manage water stress."
+  },
+  "Phyllocoptes oleiverus ashmead": {
+    "friendly_name": "Citrus Rust Mite",
+    "scientific_name": "Phyllocoptruta oleivora",
+    "description": "Microscopic mites that cause citrus fruit to develop characteristic bronze 'russet' skin, reducing market grade.",
+    "affected_crops": "Citrus",
+    "symptoms": "Brown-bronze russet patches on fruit; reduced fruit size; rough fruit skin.",
+    "organic_control": "Sulphur sprays; horticultural oils; preserve predatory mites.",
+    "chemical_control": "Abamectin, etoxazole, or spirodiclofen.",
+    "prevention": "Monitor with hand lens; spray promptly when threshold exceeded; preserve natural enemies."
+  },
+  "Icerya purchasi Maskell": {
+    "friendly_name": "Cottony Cushion Scale",
+    "scientific_name": "Icerya purchasi",
+    "description": "Distinctive scale insect with a fluted white egg sac under the body; sucks sap from citrus and many ornamentals.",
+    "affected_crops": "Citrus, acacia, ornamentals",
+    "symptoms": "White cottony egg sacs on twigs; sticky honeydew; sooty mould; weakened branches.",
+    "organic_control": "Release vedalia beetle (Rodolia cardinalis) — a classic biological control success; horticultural oils.",
+    "chemical_control": "Systemic neonicotinoids if biological control fails — but they harm vedalia beetles.",
+    "prevention": "Preserve vedalia beetle by avoiding broad-spectrum sprays; prune infested branches."
+  },
+  "Unaspis yanonensis": {
+    "friendly_name": "Arrowhead Scale",
+    "scientific_name": "Unaspis yanonensis",
+    "description": "Hard armoured scale insects on citrus that look like tiny shields; weaken trees and cause leaf drop.",
+    "affected_crops": "Citrus",
+    "symptoms": "Yellow leaves with scale shields underneath; leaf drop; weakened, dying twigs.",
+    "organic_control": "Encourage parasitoid wasps (Aphytis spp.); horticultural oils during crawler stage.",
+    "chemical_control": "Pyriproxyfen or spirotetramat during crawler stage.",
+    "prevention": "Prune to improve airflow; preserve natural enemies; inspect new nursery stock."
+  },
+  "Ceroplastes rubens": {
+    "friendly_name": "Red Wax Scale",
+    "scientific_name": "Ceroplastes rubens",
+    "description": "Reddish wax-covered scales that infest citrus and tropical fruit, producing copious honeydew.",
+    "affected_crops": "Citrus, mango, guava",
+    "symptoms": "Red waxy bumps on twigs; honeydew; sooty mould; reduced growth.",
+    "organic_control": "Parasitoid wasps; horticultural oil during crawler stage.",
+    "chemical_control": "Pyriproxyfen at crawler stage; systemic neonicotinoid as last resort.",
+    "prevention": "Avoid bringing in infested nursery stock; preserve natural enemies."
+  },
+  "Chrysomphalus aonidum": {
+    "friendly_name": "Florida Red Scale",
+    "scientific_name": "Chrysomphalus aonidum",
+    "description": "Dark round armoured scale insects on citrus that weaken trees and damage fruit appearance.",
+    "affected_crops": "Citrus",
+    "symptoms": "Dark round scales on leaves, twigs, and fruit; yellow spots beneath; reduced fruit grade.",
+    "organic_control": "Aphytis parasitoids; horticultural oil at crawler stage.",
+    "chemical_control": "Spirotetramat or pyriproxyfen at crawler stage.",
+    "prevention": "Preserve natural enemies; prune; inspect new stock."
+  },
+  "Parlatoria zizyphus Lucus": {
+    "friendly_name": "Black Parlatoria Scale",
+    "scientific_name": "Parlatoria ziziphi",
+    "description": "Black armoured scales that produce greasy appearance on citrus fruit, reducing market grade significantly.",
+    "affected_crops": "Citrus",
+    "symptoms": "Black greasy patches on fruit; reduced market value; yellow leaves.",
+    "organic_control": "Parasitoid wasps; oil sprays at crawler stage.",
+    "chemical_control": "Pyriproxyfen at crawler stage.",
+    "prevention": "Preserve natural enemies; inspect nursery stock carefully."
+  },
+  "Nipaecoccus vastalor": {
+    "friendly_name": "Spherical Mealybug",
+    "scientific_name": "Nipaecoccus viridis",
+    "description": "Round dark blue-grey mealybugs that infest citrus and ornamentals, producing waxy threads and honeydew.",
+    "affected_crops": "Citrus, mango, hibiscus, ornamentals",
+    "symptoms": "Clusters of dark mealybugs with waxy threads on twigs and fruit; honeydew and sooty mould.",
+    "organic_control": "Encourage Cryptolaemus mealybug-destroyer beetle; horticultural oils.",
+    "chemical_control": "Spirotetramat or buprofezin; rotate to manage resistance.",
+    "prevention": "Avoid ant tending (ants protect mealybugs from predators); preserve natural enemies."
+  },
+  "Aleurocanthus spiniferus": {
+    "friendly_name": "Orange Spiny Whitefly",
+    "scientific_name": "Aleurocanthus spiniferus",
+    "description": "Spiny black nymphs and white adults that infest citrus, tea, and many ornamentals.",
+    "affected_crops": "Citrus, tea, ornamentals",
+    "symptoms": "Black spiny nymphs on leaf undersides; white flying adults; honeydew and sooty mould.",
+    "organic_control": "Parasitoid wasps (Encarsia spp.); preserve natural enemies; oil sprays.",
+    "chemical_control": "Pyriproxyfen or buprofezin at nymph stage.",
+    "prevention": "Inspect imported plants; preserve natural enemies; prune dense canopies."
+  },
+  "Tetradacus c Bactrocera minax": {
+    "friendly_name": "Chinese Citrus Fruit Fly",
+    "scientific_name": "Bactrocera minax",
+    "description": "Large fruit fly whose larvae develop inside citrus fruit, causing rot and complete fruit loss.",
+    "affected_crops": "Citrus (mandarin, orange)",
+    "symptoms": "Sting marks on fruit; rot and fruit drop; maggots inside; gum-like ooze on fruit surface.",
+    "organic_control": "Bait traps with protein and insecticide; bag fruit; destroy fallen fruit; community-wide action.",
+    "chemical_control": "Bait sprays with spinosad; cover sprays with malathion at egg-laying time.",
+    "prevention": "Sanitation of fallen fruit; bag-and-trap programs; community-wide coordination."
+  },
+  "Dacus dorsalis(Hendel)": {
+    "friendly_name": "Oriental Fruit Fly",
+    "scientific_name": "Bactrocera dorsalis",
+    "description": "One of the world's most damaging fruit flies — lays eggs inside many fruits, causing total rot from within.",
+    "affected_crops": "Mango, guava, citrus, papaya, banana, tropical fruits",
+    "symptoms": "Sting marks; soft rotting spots; maggots inside fruit; premature fruit drop.",
+    "organic_control": "Methyl eugenol traps for male annihilation; bag fruit; sanitation of fallen fruit.",
+    "chemical_control": "Bait sprays (protein hydrolysate + spinosad); cover sprays if fly populations high.",
+    "prevention": "Strict sanitation (fallen fruit); area-wide trapping; bag premium fruit."
+  },
+  "Bactrocera tsuneonis": {
+    "friendly_name": "Japanese Orange Fly",
+    "scientific_name": "Bactrocera tsuneonis",
+    "description": "Fruit fly affecting citrus and stone fruit in East Asia; maggots damage fruit from inside.",
+    "affected_crops": "Citrus, stone fruit",
+    "symptoms": "Maggoty fruit; sting marks; rotting from within.",
+    "organic_control": "Bait traps; bagging; sanitation.",
+    "chemical_control": "Bait sprays with spinosad; cover sprays.",
+    "prevention": "Sanitation; community trapping."
+  },
+  "Prodenia litura": {
+    "friendly_name": "Tobacco Cutworm / Cluster Caterpillar",
+    "scientific_name": "Spodoptera litura",
+    "description": "Highly polyphagous caterpillars that gregariously feed on many crops; one of the most damaging pests in Asia and Africa.",
+    "affected_crops": "Tobacco, cotton, soybean, vegetables, groundnut, sunflower, maize",
+    "symptoms": "Skeletonised leaves with window-pane feeding by young larvae; defoliation; visible egg masses with hairs.",
+    "organic_control": "Hand-pick egg masses; pheromone traps; NPV biopesticide; Bt sprays on young larvae.",
+    "chemical_control": "Emamectin benzoate, chlorantraniliprole, or spinetoram; resistance develops fast — rotate IRAC groups.",
+    "prevention": "Synchronised planting; deep ploughing; remove weed hosts."
+  },
+  "Adristyrannus": {
+    "friendly_name": "Sugarcane Pyrilla",
+    "scientific_name": "Pyrilla perpusilla",
+    "description": "Planthopper that sucks sugarcane sap and produces massive amounts of honeydew, reducing yield and sugar.",
+    "affected_crops": "Sugarcane",
+    "symptoms": "Yellowing then drying of leaves; copious honeydew with sooty mould; reduced sugar content.",
+    "organic_control": "Release Epiricania melanoleuca (parasitic moth); detrash cane; remove alternate host grasses.",
+    "chemical_control": "Imidacloprid or chlorpyrifos sprays; spot treatments at outbreak hotspots.",
+    "prevention": "Detrashing; community vigilance during outbreak years; resistant varieties."
+  },
+  "Phyllocnistis citrella Stainton": {
+    "friendly_name": "Citrus Leafminer",
+    "scientific_name": "Phyllocnistis citrella",
+    "description": "Tiny moth whose larvae mine inside young citrus leaves, leaving silvery serpentine trails and stunting growth.",
+    "affected_crops": "Citrus",
+    "symptoms": "Silvery winding tunnels in young leaves; distorted leaves; stunting on young trees.",
+    "organic_control": "Conserve parasitoid wasps (Citrostichus phyllocnistoides); preserve natural enemies.",
+    "chemical_control": "Imidacloprid soil drench for young trees; abamectin foliar — focus on nursery and young trees only.",
+    "prevention": "Don't spray mature trees (tolerable damage); preserve natural enemies; flush growth synchronisation."
+  },
+  "Toxoptera citricidus": {
+    "friendly_name": "Brown Citrus Aphid",
+    "scientific_name": "Toxoptera citricida",
+    "description": "Dark brown aphid; the primary vector of Citrus Tristeza Virus, a devastating citrus disease.",
+    "affected_crops": "Citrus",
+    "symptoms": "Aphid colonies on new flush; curled new leaves; Citrus Tristeza Virus quick-decline symptoms.",
+    "organic_control": "Encourage parasitoid wasps and ladybirds; remove ants that protect aphids.",
+    "chemical_control": "Imidacloprid soil drench during flush; foliar pirimicarb.",
+    "prevention": "CTV-tolerant rootstocks; ant management; preserve natural enemies."
+  },
+  "Toxoptera aurantii": {
+    "friendly_name": "Black Citrus Aphid",
+    "scientific_name": "Toxoptera aurantii",
+    "description": "Glossy black aphid that infests citrus and tea flush, also transmits virus diseases.",
+    "affected_crops": "Citrus, tea, coffee, cocoa",
+    "symptoms": "Black aphids on new flush; curled leaves; honeydew; reduced flush vigor.",
+    "organic_control": "Parasitoid wasps; ladybirds; ant management.",
+    "chemical_control": "Pirimicarb or imidacloprid during heavy flush.",
+    "prevention": "Preserve natural enemies; manage ants; balanced fertilisation."
+  },
+  "Aphis citricola Vander Goot": {
+    "friendly_name": "Spirea Aphid (Green Citrus Aphid)",
+    "scientific_name": "Aphis spiraecola",
+    "description": "Bright green aphid that clusters on young citrus flush, causing leaf curl and reduced growth.",
+    "affected_crops": "Citrus, apple, pear, spirea",
+    "symptoms": "Green aphids on new shoots; curled and distorted leaves; honeydew.",
+    "organic_control": "Ladybirds, lacewings; water spray; reflective mulches.",
+    "chemical_control": "Pirimicarb (selective); imidacloprid as foliar or soil drench.",
+    "prevention": "Preserve natural enemies; manage ants; balanced nitrogen."
+  },
+  "Scirtothrips dorsalis Hood": {
+    "friendly_name": "Chilli Thrips",
+    "scientific_name": "Scirtothrips dorsalis",
+    "description": "Tiny pale-yellow thrips that rasp young leaves, causing characteristic upward leaf curl and bronze discolouration.",
+    "affected_crops": "Chilli, cotton, citrus, tea, mango, vegetables",
+    "symptoms": "Upward curling of leaves; bronze 'spider-veining' on leaves; deformed fruit; reduced flowering.",
+    "organic_control": "Predatory mites; blue sticky traps; reflective mulches; neem oil.",
+    "chemical_control": "Spinosad, spinetoram, or abamectin; rotate.",
+    "prevention": "Healthy plants resist better; preserve natural enemies; manage weed hosts."
+  },
+  "Dasineura sp": {
+    "friendly_name": "Citrus Bud Mite Gall Midge",
+    "scientific_name": "Dasineura sp.",
+    "description": "Tiny midges whose larvae cause distorted plant tissue (galls), affecting growth and fruit.",
+    "affected_crops": "Citrus, ornamental trees",
+    "symptoms": "Distorted buds, leaves or fruit; galls visible on tissues.",
+    "organic_control": "Remove and destroy galls; conserve parasitoid wasps.",
+    "chemical_control": "Systemic insecticides at bud-break — but limited effect once galls formed.",
+    "prevention": "Prune out infested tissue; preserve natural enemies."
+  },
+  "Lawana imitata Melichar": {
+    "friendly_name": "White Moth Bug",
+    "scientific_name": "Lawana imitata",
+    "description": "White moth-like planthoppers that suck sap from many tropical crops and ornamentals.",
+    "affected_crops": "Mango, citrus, guava, coffee, ornamentals",
+    "symptoms": "White cottony masses on branches; honeydew; sooty mould; weakened shoots.",
+    "organic_control": "Strong water sprays; preserve natural enemies; pruning.",
+    "chemical_control": "Pyriproxyfen or buprofezin at nymph stage; neonicotinoids as systemic.",
+    "prevention": "Avoid dense crowded canopies; preserve natural enemies."
+  },
+  "Salurnis marginella Guerr": {
+    "friendly_name": "Lantana Bug",
+    "scientific_name": "Salurnis marginella",
+    "description": "Small planthopper that infests citrus, tea, and many tropical plants, sucking sap from shoots.",
+    "affected_crops": "Citrus, tea, ornamental shrubs",
+    "symptoms": "White waxy filaments on shoots; honeydew; reduced vigour.",
+    "organic_control": "Strong water sprays; parasitoid wasps.",
+    "chemical_control": "Buprofezin or imidacloprid.",
+    "prevention": "Preserve natural enemies; prune dense growth."
+  },
+  "Deporaus marginatus Pascoe": {
+    "friendly_name": "Mango Leaf Cutting Weevil",
+    "scientific_name": "Deporaus marginatus",
+    "description": "Small weevil that cuts and rolls young mango leaves to lay eggs inside.",
+    "affected_crops": "Mango, cashew",
+    "symptoms": "Rolled, partially cut young leaves hanging from shoots; reduced flush.",
+    "organic_control": "Remove and destroy rolled leaves; conserve birds and natural enemies.",
+    "chemical_control": "Pyrethroid sprays during flush if damage is severe.",
+    "prevention": "Time pruning to synchronise flushes; clean orchard floor."
+  },
+  "Chlumetia transversa": {
+    "friendly_name": "Mango Shoot Borer",
+    "scientific_name": "Chlumetia transversa",
+    "description": "Caterpillars that bore into young mango shoots, killing the shoots and damaging the tree shape.",
+    "affected_crops": "Mango",
+    "symptoms": "Wilting and dying of young shoots; bore holes with frass; reduced flushing.",
+    "organic_control": "Prune and burn infested shoots; pheromone traps; conserve parasitoid wasps.",
+    "chemical_control": "Chlorantraniliprole at flush start; emamectin benzoate.",
+    "prevention": "Synchronise pruning and flush; remove infested shoots promptly."
+  },
+  "Mango flat beak leafhopper": {
+    "friendly_name": "Mango Hopper",
+    "scientific_name": "Idioscopus clypealis",
+    "description": "Tiny wedge-shaped hoppers that suck sap from mango flowers and shoots, causing flower drop.",
+    "affected_crops": "Mango",
+    "symptoms": "Flower drop; honeydew; sooty mould; sticky panicles; reduced fruit set.",
+    "organic_control": "Smoke fumigation in flowering; conserve parasitoid wasps; reduce dense canopies.",
+    "chemical_control": "Imidacloprid or thiamethoxam during flowering; spray under canopy.",
+    "prevention": "Prune for airflow; community-coordinated sprays during flowering."
+  },
+  "Rhytidodera bowrinii white": {
+    "friendly_name": "Mango Stem Borer",
+    "scientific_name": "Rhytidodera bowringi",
+    "description": "Large beetle whose larvae tunnel inside mango stems and major branches, weakening or killing trees.",
+    "affected_crops": "Mango, cashew",
+    "symptoms": "Frass at base of trunks; gum exudation; branches drying back; entry holes visible.",
+    "organic_control": "Probe entry holes with wire to kill larvae; seal holes with mud or wax; remove dead wood.",
+    "chemical_control": "Inject chlorpyrifos or imidacloprid into bore holes; pad with cotton soaked in insecticide.",
+    "prevention": "Healthy vigorous trees resist better; sanitation of dead wood; monitor regularly."
+  },
+  "Sternochetus frigidus": {
+    "friendly_name": "Mango Pulp Weevil",
+    "scientific_name": "Sternochetus frigidus",
+    "description": "Small weevil whose larvae develop inside mango pulp, ruining fruit and posing a quarantine concern.",
+    "affected_crops": "Mango",
+    "symptoms": "Adults hide in bark crevices; larvae inside fruit pulp not visible from outside; rejected export fruit.",
+    "organic_control": "Sanitation of fallen fruit; bark scraping; bait traps.",
+    "chemical_control": "Cover sprays of malathion or fenthion during fruit set.",
+    "prevention": "Sanitation; pruning to remove hiding places; quarantine inspection."
+  },
+  "cnidocampa flavescens walker": {
+    "friendly_name": "Stinging Slug Caterpillar",
+    "scientific_name": "Monema flavescens",
+    "description": "Bright green caterpillars with stinging hairs that defoliate fruit trees and cause skin irritation to handlers.",
+    "affected_crops": "Tea, citrus, fruit trees, ornamentals",
+    "symptoms": "Defoliation; visible bright caterpillars; painful stings to handlers.",
+    "organic_control": "Hand-pick (with gloves!); Bt sprays on young larvae; encourage birds.",
+    "chemical_control": "Spinosad or chlorantraniliprole.",
+    "prevention": "Monitor regularly; remove early before stinging hairs develop."
+  },
+  "peach fruit moth": {
+    "friendly_name": "Peach Fruit Moth",
+    "scientific_name": "Carposina sasakii",
+    "description": "Caterpillars bore into peach, apple, and other stone fruit, leaving wormy fruit with gummy frass.",
+    "affected_crops": "Peach, apple, pear, plum",
+    "symptoms": "Wormy fruit with frass; gummy ooze at entry; premature fruit drop.",
+    "organic_control": "Pheromone traps; mating disruption; bag fruit; destroy fallen fruit.",
+    "chemical_control": "Chlorantraniliprole or emamectin benzoate during egg-hatch; cover sprays.",
+    "prevention": "Sanitation; bagging; pheromone monitoring."
+  },
+  "Locust": {
+    "friendly_name": "Locust",
+    "scientific_name": "Locusta migratoria",
+    "description": "Migratory locust — large gregarious grasshopper forming devastating swarms that strip vegetation.",
+    "affected_crops": "All crops — cereals, vegetables, fruit trees, pasture, almost any green plant",
+    "symptoms": "Sudden severe defoliation; visible swarms covering fields; ragged bare stalks; ground covered in hopper bands.",
+    "organic_control": "Trap pits with kerosene; beat hopper bands at dawn while cold; communicate with neighbouring farmers; community action.",
+    "chemical_control": "Aerial spraying by national locust control authorities using malathion, fipronil, or IGRs (diflubenzuron).",
+    "prevention": "Early warning monitoring of hopper bands; report sightings immediately to authorities; community vigilance during plague years."
+  },
+  "small green leafhopper": {
+    "friendly_name": "Green Leafhopper",
+    "scientific_name": "Empoasca flavescens",
+    "description": "Tiny green leafhoppers that suck sap from tea, fruit trees, and many crops.",
+    "affected_crops": "Tea, fruit trees, cotton, vegetables",
+    "symptoms": "V-shaped browning at leaf tips; rim hopperburn; reduced quality.",
+    "organic_control": "Yellow sticky traps; preserve natural enemies; reflective mulches.",
+    "chemical_control": "Imidacloprid or thiamethoxam.",
+    "prevention": "Tolerant varieties; balanced nitrogen; community spraying."
+  },
+  "Bollworm": {
+    "friendly_name": "Bollworm (Cotton/Tomato Fruitworm)",
+    "scientific_name": "Helicoverpa armigera",
+    "description": "One of the world's most destructive pests. Larvae bore into bolls, fruits, pods and ears, causing direct yield loss. Adults are night-flying moths.",
+    "affected_crops": "Cotton, tomato, maize, sorghum, pigeon pea, chickpea, soybean, sunflower",
+    "symptoms": "Round entry holes on fruits, bolls, and pods. Frass around holes. Damaged kernels in maize ears. Wilting of flowers and young fruits. Hollowed-out fruits with internal feeding damage.",
+    "organic_control": "Use pheromone traps for monitoring and mass trapping. Apply Bacillus thuringiensis (Bt) on young larvae. Release Trichogramma wasps. Use NPV (Nuclear Polyhedrosis Virus) biopesticide. Hand-pick larvae in small plots.",
+    "chemical_control": "Apply emamectin benzoate, chlorantraniliprole, or indoxacarb when young larvae are present (before they bore into fruits). Spray in the evening. Rotate insecticide groups — bollworm develops resistance quickly.",
+    "prevention": "Use Bt-cotton or other resistant cultivars. Deep-plough to expose pupae. Maintain refuge crops to support natural enemies. Intercrop with marigold or pigeon pea as trap crops. Synchronise planting dates within a region to break the pest cycle."
+  },
+  "Whitefly": {
+    "friendly_name": "Whitefly",
+    "scientific_name": "Bemisia tabaci",
+    "description": "Tiny, sap-sucking insects with white, powdery wings. They cluster on the underside of leaves, weakening plants and transmitting plant viruses. Adults are about 1–2 mm long.",
+    "affected_crops": "Tomato, cotton, cabbage, beans, sweet potato, tobacco, cucurbits",
+    "symptoms": "Yellowing of leaves. Sticky honeydew on leaves and fruits. Sooty mould growth. Stunted plant growth. Wilting. Virus transmission symptoms such as leaf curl.",
+    "organic_control": "Use yellow sticky traps to monitor and reduce adult populations. Spray neem oil or insecticidal soap on the underside of leaves. Introduce natural predators like Encarsia formosa or ladybird beetles. Maintain reflective mulches to disorient adults.",
+    "chemical_control": "Apply systemic insecticides such as imidacloprid, acetamiprid, or thiamethoxam. Rotate insecticide classes to prevent resistance. Always follow label instructions and safe pre-harvest intervals.",
+    "prevention": "Inspect new transplants before planting. Remove weeds that host whiteflies. Practice crop rotation. Use floating row covers on young plants. Avoid excessive nitrogen fertilisation which attracts whiteflies."
+  }
+}
