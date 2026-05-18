@@ -1,8 +1,12 @@
 """
 PestGuard backend.
 
-Launch:
+Launch (dev):
     python app.py
+
+Production (Hugging Face Spaces):
+    The Dockerfile builds the React frontend into ./static, then runs this app.
+    When ./static exists, Flask serves the React app from / and the API from /api/*.
 
 Binds to 0.0.0.0 so the dev frontend (and a phone on the same Wi-Fi) can reach it.
 """
@@ -26,7 +30,24 @@ import ml_service
 
 
 def create_app():
-    app = Flask(__name__)
+    # ── Detect if a built frontend exists, and configure Flask accordingly ──
+    # In production (Docker / Hugging Face) the Dockerfile copies the built
+    # React app into ./static (relative to the backend folder). When that
+    # folder exists we tell Flask to serve it as the static root, so visiting
+    # `/` returns the React index.html and other paths fall through to React
+    # Router. In local dev (where the frontend is run separately via Vite),
+    # this folder won't exist and Flask runs as API-only.
+    backend_dir = os.path.dirname(os.path.abspath(__file__))
+    static_dir = os.environ.get('STATIC_DIR') or os.path.join(backend_dir, 'static')
+    serving_frontend = os.path.isdir(static_dir) and os.path.isfile(os.path.join(static_dir, 'index.html'))
+
+    if serving_frontend:
+        app = Flask(__name__, static_folder=static_dir, static_url_path='')
+        print(f"[init] Serving frontend from: {static_dir}")
+    else:
+        app = Flask(__name__)
+        print(f"[init] API-only mode (no frontend found at {static_dir})")
+
     app.config.from_object(Config)
 
     CORS(app, resources={
@@ -76,8 +97,37 @@ def create_app():
     def serve_upload(filename):
         return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
+    # ─── Frontend routes (production only) ───────────────────────────────────
+    # IMPORTANT: these must be registered AFTER all `/api/*` routes so the API
+    # takes priority. The catch-all below serves index.html for any unknown
+    # path so React Router can handle client-side routing (e.g. /reports/new,
+    # /scans/123 — these aren't real backend routes, they're React routes).
+    if serving_frontend:
+        @app.get('/')
+        def index():
+            return send_from_directory(static_dir, 'index.html')
+
+        @app.get('/<path:path>')
+        def frontend_catchall(path):
+            # Never intercept API or uploads — those have their own handlers.
+            if path.startswith('api/') or path.startswith('uploads/'):
+                return jsonify({'error': 'Not found'}), 404
+            # If it's a real static file (CSS, JS, image, favicon), serve it.
+            full_path = os.path.join(static_dir, path)
+            if os.path.isfile(full_path):
+                return send_from_directory(static_dir, path)
+            # Otherwise let React Router handle it client-side.
+            return send_from_directory(static_dir, 'index.html')
+
     @app.errorhandler(404)
     def nf(e):
+        # In production, if the frontend is being served, a 404 on a non-API
+        # path means React Router will pick it up — but only if we serve
+        # index.html. In API-only mode we just return JSON like before.
+        if serving_frontend:
+            from flask import request
+            if not request.path.startswith('/api/') and not request.path.startswith('/uploads/'):
+                return send_from_directory(static_dir, 'index.html')
         return jsonify({'error': 'Not found'}), 404
 
     @app.errorhandler(413)
