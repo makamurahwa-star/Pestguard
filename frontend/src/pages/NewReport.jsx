@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef } from 'react'
 import { useNavigate, useLocation, Link } from 'react-router-dom'
 import {
-  ArrowLeft, MapPin, X, Loader2, CheckCircle2,
-  AlertTriangle, Crosshair, Camera, ImageIcon,
+  ArrowLeft, MapPin, X, Loader2,
+  AlertTriangle, Camera, ImageIcon,
 } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { reportsApi, systemApi } from '../lib/api'
 import { useAuth } from '../context/AuthContext.jsx'
 import { usePestData } from '../context/PestDataContext.jsx'
+import LocationPicker from '../components/LocationPicker.jsx'
 
 const SEVERITIES = [
   { value: 'low',      label: 'Low',      desc: 'Few pests, isolated',           color: 'bg-leaf-100 text-leaf-800 border-leaf-300' },
@@ -70,7 +71,6 @@ export default function NewReport() {
   const [imageFile, setImageFile] = useState(null)
   const [imagePreview, setImagePreview] = useState(null)
   const [submitting, setSubmitting] = useState(false)
-  const [locating, setLocating] = useState(false)
 
   useEffect(() => {
     systemApi.config().then(c => setClasses(c.class_names || [])).catch(() => {})
@@ -80,32 +80,18 @@ export default function NewReport() {
 
   const update = (field) => (e) => setForm({ ...form, [field]: e.target.value })
 
+  /**
+   * Handler for the LocationPicker — updates the three location fields at once.
+   */
+  const handleLocationChange = ({ latitude, longitude, region }) => {
+    setForm((f) => ({ ...f, latitude, longitude, region }))
+  }
+
   const handleFile = (f) => {
     if (!f || !f.type?.startsWith('image/')) return
     if (imagePreview) URL.revokeObjectURL(imagePreview)
     setImageFile(f)
     setImagePreview(URL.createObjectURL(f))
-  }
-
-  const detectLocation = () => {
-    if (!navigator.geolocation) {
-      toast.error('Geolocation not available')
-      return
-    }
-    setLocating(true)
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        setForm((f) => ({
-          ...f,
-          latitude: pos.coords.latitude.toFixed(6),
-          longitude: pos.coords.longitude.toFixed(6),
-        }))
-        toast.success('Location captured')
-        setLocating(false)
-      },
-      (err) => { toast.error('Could not get location: ' + err.message); setLocating(false) },
-      { enableHighAccuracy: true, timeout: 10000 }
-    )
   }
 
   const handleSubmit = async (e) => {
@@ -272,38 +258,12 @@ export default function NewReport() {
               <MapPin size={18} /> Location
             </h2>
 
-            <button type="button" onClick={detectLocation} disabled={locating} className="btn-secondary w-full">
-              {locating ? <><Loader2 size={16} className="animate-spin" /> Locating…</> :
-                <><Crosshair size={16} /> Use my current location</>}
-            </button>
-
-            <div className="text-xs text-leaf-500 text-center">— or enter manually —</div>
-
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="label">Latitude *</label>
-                <input type="number" step="any" required value={form.latitude}
-                  onChange={update('latitude')} className="input font-mono text-sm" placeholder="-17.82" />
-              </div>
-              <div>
-                <label className="label">Longitude *</label>
-                <input type="number" step="any" required value={form.longitude}
-                  onChange={update('longitude')} className="input font-mono text-sm" placeholder="31.03" />
-              </div>
-            </div>
-
-            <div>
-              <label className="label">Region</label>
-              <input value={form.region} onChange={update('region')}
-                className="input" placeholder="e.g. Mashonaland East" />
-            </div>
-
-            {form.latitude && form.longitude && (
-              <div className="p-3 rounded-2xl bg-leaf-50 border border-leaf-200 text-xs text-leaf-800 flex items-start gap-2">
-                <CheckCircle2 size={14} className="mt-0.5 flex-shrink-0" />
-                <span>Pinned at <span className="font-mono">{parseFloat(form.latitude).toFixed(4)}, {parseFloat(form.longitude).toFixed(4)}</span></span>
-              </div>
-            )}
+            <LocationPicker
+              latitude={form.latitude}
+              longitude={form.longitude}
+              region={form.region}
+              onChange={handleLocationChange}
+            />
 
             <hr className="border-leaf-100" />
 
